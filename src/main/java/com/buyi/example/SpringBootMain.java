@@ -25,12 +25,10 @@ import java.util.List;
 @ComponentScan("com.buyi.*")
 @MapperScan("com.buyi.mapper")
 @EnableConfigurationProperties(DataSourceProperties.class)
-//@SpringBootApplication
 public class SpringBootMain implements CommandLineRunner {
 
     @Resource
     private AdminMapper adminMapper;
-
 
     @RequestMapping("/")
     public String greeting(){
@@ -44,7 +42,7 @@ public class SpringBootMain implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 //        Admin admin = new Admin();
-//        admin.setName("buyi");
+//        admin.setName("布衣");
 //        admin.setPsw("123456");
 //
 //        adminMapper.addOne(admin);
@@ -52,7 +50,7 @@ public class SpringBootMain implements CommandLineRunner {
 
 
 
-        String buyi = adminMapper.getByNameId(1, "buyi").getName();
-        System.out.println();
+        //String buyi = adminMapper.getByNameId(1, "buyi").getName();
+        //System.out.println();
     }
 }

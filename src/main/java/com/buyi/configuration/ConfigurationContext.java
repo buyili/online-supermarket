@@ -30,11 +30,10 @@ public class ConfigurationContext {
         return new HttpMessageConverters(additional);
     }
 
-    @Bean
-    @ConfigurationProperties("jdbc")
-    public BasicDataSource dataSource(){
-        return DataSourceBuilder.create().type(BasicDataSource.class).build();
-    }
-
+//    @Bean
+//    @ConfigurationProperties("jdbc")
+//    public BasicDataSource dataSource(){
+//        return DataSourceBuilder.create().type(BasicDataSource.class).build();
+//    }
 
 }

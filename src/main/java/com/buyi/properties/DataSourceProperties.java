@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties("jdbc")
 public class DataSourceProperties {
 
-
     private String url;
 
     //@Value("${jdbc.username}")

@@ -1,6 +1,8 @@
 package com.buyi.controller;
 
 import com.buyi.properties.DataSourceProperties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,16 +15,19 @@ import java.util.Date;
 @RestController
 public class Controller {
 
+    private static Logger logger = LogManager.getLogger(Controller.class);
+
     @Autowired
     private DataSourceProperties properties;
 
     @RequestMapping("/controller")
     public String greeting(){
-        return "hello afwefawef";
+        return "hello controller";
     }
 
     @RequestMapping("/get-date")
     public Date getDate(){
+        logger.info(new Date().toString());
         return new Date();
     }
 
