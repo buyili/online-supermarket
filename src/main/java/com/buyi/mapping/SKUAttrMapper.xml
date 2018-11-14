@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buyi.dao.SKUAttrDao">
+    <insert id="add" parameterType="com.buyi.entity.SKUAttr">
+        INSERT INTO `sku_attr` (`attr_id`, `attr_value_id`, `sku_id`) VALUES (#{attrId}, #{attrValueId}, #{skuId})
+    </insert>
+
+    <select id="queryByForeignKey" parameterType="com.buyi.entity.SKUAttr" resultType="com.buyi.entity.SKUAttr">
+        SELECT * FROM `sku_attr`
+        <where>
+            <if test="attrId != null">
+                AND `attr_id` = #{attrId}
+            </if>
+            <if test="attrValueId != null">
+                AND `attr_value_id` = #{attrValueId}
+            </if>
+            <if test="skuId != null">
+                AND `sku_id` = #{skuId}
+            </if>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buyi.dao.OrderSKUDao">
+    <insert id="add" parameterType="com.buyi.entity.OrderSKU">
+        INSERT INTO `order_sku`
+        (`order_id`, `goods_id`, `goods_name`, `sku_count`, `sku_price`, `sku_sum`, `sku_detail`, `after_sale`)
+        VALUES
+        (#{orderId}, #{goodsId}, #{goodsName}, #{skuCount}, #{skuPrice}, #{skuSum}, #{skuDetail}, #{afterSale})
+    </insert>
+
+    <select id="queryById" parameterType="java.lang.Integer" resultType="com.buyi.entity.OrderSKU">
+        SELECT * FROM `order_sku` WHERE `id` = #{id}
+    </select>
+
+    <select id="queryByForeignKey" parameterType="com.buyi.entity.OrderSKU" resultType="com.buyi.entity.OrderSKU">
+        SELECT * FROM `order_sku`
+        <where>
+            <if test="orderId != null">
+                AND `order_id` = #{orderId}
+            </if>
+            <if test="goodsId != null">
+                AND `goods_id` = #{goodsId}
+            </if>
+            <if test="afterSale != null">
+                AND `after_sale` = #{afterSale}
+            </if>
+        </where>
+    </select>
+
+    <update id="update" parameterType="com.buyi.entity.OrderSKU">
+        UPDATE `order_sku`
+        <set>
+            <if test="afterSale != null">
+                `after_sale` = #{afterSale}
+            </if>
+        </set>
+        WHERE `id` = #{id}
+    </update>
+</mapper>

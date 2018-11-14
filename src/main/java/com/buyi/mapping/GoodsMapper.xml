@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buyi.dao.GoodsDao">
+    <insert id="add" parameterType="com.buyi.entity.Goods">
+        INSERT INTO `goods` (`name`, `trademark_id`, `category_id`, `store_id`)
+        VALUES (#{name}, #{trademarkId}, #{categoryId}, #{storeId})
+    </insert>
+
+    <select id="queryById" parameterType="java.lang.Integer" resultType="com.buyi.entity.Goods">
+        SELECT * FROM  `goods` WHERE `id` = #{id}
+    </select>
+
+    <select id="queryByCategoryId" parameterType="java.lang.Integer" resultType="com.buyi.entity.Goods">
+        SELECT * FROM `goods` WHERE `category_id` = #{categoryId}
+    </select>
+
+    <select id="queryByStoreId" parameterType="java.lang.Integer" resultType="com.buyi.entity.Goods">
+        SELECT * FROM `goods` WHERE `store_id` = #{storeId}
+    </select>
+
+    <select id="queryByTrademarkId" parameterType="java.lang.Integer" resultType="com.buyi.entity.Goods">
+        SELECT * FROM `goods` WHERE `trademark_id` = #{trademarkId}
+    </select>
+
+    <update id="update" parameterType="com.buyi.entity.Goods">
+        UPDATE `goods`
+        <set>
+            <if test="name != null">
+                `name` = #{name},
+            </if>
+            <if test="categoryId != null">
+                `category_id` = #{categoryId},
+            </if>
+            <if test="trademarkId != null">
+                `trademark_id` = #{trademarkId},
+            </if>
+        </set>
+        WHERE `id` = #{id}
+    </update>
+</mapper>

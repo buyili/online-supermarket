@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buyi.dao.AfterSaleDao">
+    <insert id="add" parameterType="com.buyi.entity.AfterSale">
+        INSERT INTO `after_sale`
+        (`order_sku_id`, `user_id`, `cause`, `method`, `status`, `express_detail`, `create_time`)
+        VALUES (#{orderSKUId}, #{userId}, #{cause}, #{method}, #{status}, #{expressDetail}, #{createTime})
+    </insert>
+
+    <select id="queryById" parameterType="java.lang.Integer" resultType="com.buyi.entity.AfterSale">
+        SELECT * FROM `after_sale` WHERE `id` = #{id}
+    </select>
+
+    <select id="queryByUserId" parameterType="java.lang.Integer" resultType="com.buyi.entity.AfterSale">
+        SELECT * FROM `after_sale` WHERE `user_id` = #{userId}
+    </select>
+
+    <update id="update" parameterType="com.buyi.entity.AfterSale">
+        UPDATE `after_sale`
+        <set>
+            <if test="result != null">
+                `resutl` = #{result},
+            </if>
+            <if test="status != null">
+                `status` = #{status},
+            </if>
+            <if test="expressDetail != null">
+                `express_detail` = #{expressDetail},
+            </if>
+        </set>
+        WHERE `id` = #{id}
+    </update>
+</mapper>

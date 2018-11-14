@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buyi.dao.TrademarkDao">
+    <insert id="add" parameterType="com.buyi.entity.Trademark">
+        INSERT INTO `trademark` (`name`, `logo_url`) VALUES (#{name}, #{logoUrl})
+    </insert>
+
+    <select id="queryById" parameterType="java.lang.Integer" resultType="com.buyi.entity.Trademark">
+        SELECT * FROM `trademark` WHERE `id` = #{id}
+    </select>
+
+    <update id="update" parameterType="com.buyi.entity.Trademark">
+        UPDATE `trademark`
+        <set>
+            <if test="name != null">
+                `name` = #{name},
+            </if>
+            <if test="logoUrl != null">
+                `logo_url` = #{logoUrl},
+            </if>
+        </set>
+        WHERE `id` = #{id}
+    </update>
+</mapper>

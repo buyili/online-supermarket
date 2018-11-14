@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buyi.dao.OrderDao">
+    <insert id="add" parameterType="com.buyi.entity.Order">
+        INSERT INTO `order`
+        (`user_id`, `store_id`, `name`, `sum`, `address`, `express_num`, `create_time`)
+        VALUES
+        (#{userId}, #{storeId}, #{name}, #{sum}, #{address}, #{expressNum}, #{createTime})
+    </insert>
+
+    <select id="queryById" parameterType="java.lang.Integer" resultType="com.buyi.entity.Order">
+        SELECT * FROM `order` WHERE `id` = #{id}
+    </select>
+
+    <select id="queryByForeignKey" parameterType="com.buyi.entity.Order" resultType="com.buyi.entity.Order">
+        SELECT * FROM `order`
+        <where>
+            <if test="userId != null">
+                AND `user_id` = #{userId}
+            </if>
+            <if test="storeId != null">
+                AND `store_id` = #{storeId}
+            </if>
+        </where>
+    </select>
+
+    <update id="update" parameterType="com.buyi.entity.Order">
+        UPDATE `order`
+        <set>
+            <if test="status != null">
+                `status` = #{status},
+            </if>
+            <if test="expressNum != null">
+                `express_num` = #{expressNum},
+            </if>
+            <if test="deleteTime != null">
+                `delete_time` = #{deleteTime}
+            </if>
+        </set>
+        WHERE `id` = #{id}
+    </update>
+</mapper>

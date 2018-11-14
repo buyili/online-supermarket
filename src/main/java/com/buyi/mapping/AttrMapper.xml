@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buyi.dao.AttrDao">
+    <insert id="add" parameterType="com.buyi.entity.Attr">
+        INSERT INTO `attr` (`name`, `category_id`, `is_sku`) VALUES (#{name}, #{categoryId}, #{isSKU})
+    </insert>
+
+    <select id="queryById" parameterType="java.lang.Integer" resultType="com.buyi.entity.Attr">
+        SELECT * FROM `attr` WHERE `id` = #{id}
+    </select>
+
+    <select id="queryByCategoryId" parameterType="java.lang.Integer" resultType="com.buyi.entity.Attr">
+        SELECT * FROM `attr` WHERE `category_id` = #{categoryId}
+    </select>
+
+    <update id="update" parameterType="com.buyi.entity.Attr">
+        UPDATE `attr`
+        <set>
+            <if test="name != null">
+                `name` = #{name},
+            </if>
+            <if test="isSKU != null">
+                `is_sku` = #{isSKU},
+            </if>
+        </set>
+        WHERE `id` = #{id}
+    </update>
+</mapper>

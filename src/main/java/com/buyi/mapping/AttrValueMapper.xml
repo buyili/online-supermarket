@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buyi.dao.AttrValueDao">
+    <insert id="add" parameterType="com.buyi.entity.AttrValue">
+        INSERT INTO `attr_value` (`attr_id`, `name`, `goods_id`)
+        VALUES (#{attrId}, #{name}, #{goodsId})
+    </insert>
+
+    <select id="queryById" parameterType="java.lang.Integer" resultType="com.buyi.entity.AttrValue">
+        SELECT * FROM `attr_value` WHERE `id` = #{id}
+    </select>
+
+    <select id="queryByAttrId" parameterType="java.lang.Integer" resultType="com.buyi.entity.AttrValue">
+        SELECT * FROM `attr_value` WHERE `attr_id` = #{attrId}
+    </select>
+
+    <update id="update" parameterType="com.buyi.entity.AttrValue">
+        UPDATE `attr_value`
+        <set>
+            <if test="name != null">
+                `name` = #{name},
+            </if>
+        </set>
+        WHERE `id` = #{id}
+    </update>
+</mapper>

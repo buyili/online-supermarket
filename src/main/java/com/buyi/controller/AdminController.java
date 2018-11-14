@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * Created by 1132989278@qq.com on 2018/11/5 16:38
  */
-@RestController
+//@RestController
 public class AdminController {
 
     private static Logger logger = LoggerFactory.getLogger(AdminController.class);

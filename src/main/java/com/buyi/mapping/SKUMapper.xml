@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buyi.dao.SKUDao">
+    <insert id="add" parameterType="com.buyi.entity.SKU">
+        INSERT INTO `sku` (`goods_id`, `sku_attr`, `price`, `count`)
+        VALUES (#{goodsId}, #{skuAttr}, #{price}, #{count})
+    </insert>
+
+    <select id="queryById" parameterType="java.lang.Integer" resultType="com.buyi.entity.SKU">
+        SELECT * FROM `sku` WHERE `id` = #{id}
+    </select>
+
+    <select id="queryByGoodsId" parameterType="java.lang.Integer" resultType="com.buyi.entity.SKU">
+        SELECT * FROM `sku` WHERE `goods_id` = #{goodsId}
+    </select>
+
+    <update id="update" parameterType="com.buyi.entity.SKU">
+        UPDATE `sku`
+        <set>
+            <if test="skuAttr != null">
+                `sku_attr`  = #{skuAttr},
+            </if>
+            <if test="price != null">
+                `price` = #{price},
+            </if>
+            <if test="count != null">
+                `count` = #{count},
+            </if>
+        </set>
+        WHERE `id` = #{id}
+    </update>
+</mapper>

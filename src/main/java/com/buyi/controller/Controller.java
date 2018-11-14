@@ -14,7 +14,7 @@ import java.util.Date;
 /**
  * Created by 1132989278@qq.com on 2018/11/2 16:42
  */
-@RestController
+//@RestController
 public class Controller {
 
     private static Logger logger = LogManager.getLogger(Controller.class);

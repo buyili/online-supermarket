@@ -1,0 +1,36 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buyi.dao.AddressDao">
+    <insert id="add" parameterType="com.buyi.entity.Address">
+        INSERT INTO `address` (`user_id`, `address`, `name`, `telephone`, `postcode`, `create_time`)
+        VALUES (#{userId}, #{address}, #{name}, #{telephone}, #{postcode}, #{createTime})
+    </insert>
+
+    <select id="queryById" parameterType="java.lang.Integer" resultType="com.buyi.entity.Address">
+        SELECT * FROM `address` WHERE `id` = #{id}
+    </select>
+
+    <select id="queryByUserId" parameterType="java.lang.Integer" resultType="com.buyi.entity.Address">
+        SELECT * FROM `address` WHERE `user_id` = #{userId}
+    </select>
+
+    <update id="update" parameterType="com.buyi.entity.Address">
+        UPDATE `address`
+        <set>
+            <if test="address != null">
+                `address` = #{address},
+            </if>
+            <if test="name != null">
+                `name` = #{name},
+            </if>
+            <if test="telephone != null">
+                `telephone` = #{telephone},
+            </if>
+            <if test="postcode != null">
+                `postcode` = #{postcode},
+            </if>
+        </set>
+        WHERE `id` = #{id}
+    </update>
+</mapper>

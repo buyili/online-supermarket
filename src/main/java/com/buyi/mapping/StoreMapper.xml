@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buyi.dao.StoreDao">
+    <insert id="add" parameterType="com.buyi.entity.Store">
+        INSERT INTO `store` (`name`, `user_id`, `status`) VALUES (#{name}, #{userId}, #{status})
+    </insert>
+
+    <select id="queryById" parameterType="java.lang.Integer" resultType="com.buyi.entity.Store">
+        SELECT * FROM `store` WHERE `id` = #{id}
+    </select>
+
+    <select id="queryByUserId" parameterType="java.lang.Integer" resultType="com.buyi.entity.Store">
+        SELECT * FROM `store` WHERE `user_id` = #{userId}
+    </select>
+
+    <update id="update" parameterType="com.buyi.entity.Store">
+        UPDATE `store`
+        <set>
+            <if test="status != null">
+                `status` = #{status},
+            </if>
+        </set>
+        WHERE `id` = #{id}
+    </update>
+</mapper>
