@@ -1,6 +1,7 @@
 package com.buyi.dao;
 
 import com.buyi.SpringBootApplicationTestDao;
+import com.buyi.commons.util.UUIDByTime;
 import com.buyi.entity.SKU;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,13 +31,15 @@ public class SKUDaoTest {
         sku.setGoodsId(1);
         sku.setPrice(3000.00f);
         sku.setSkuAttr("2:3,4:4,5:5,6:4");
-//        skuDao.add(sku);
+        sku.setDetail("yellow ");
+        sku.setId(UUIDByTime.getUUID());
+        skuDao.add(sku);
 //        skuDao.add(sku);
     }
 
     @Test
     public void queryById() {
-        SKU sku = skuDao.queryById(1);
+        SKU sku = skuDao.queryById(UUIDByTime.getUUID());
         System.out.println(sku.getPrice());
     }
 
@@ -48,8 +51,10 @@ public class SKUDaoTest {
 
     @Test
     public void update() {
-        SKU sku = skuDao.queryById(1);
+        SKU sku = skuDao.queryById("1");
         sku.setPrice(3000.00 == sku.getPrice() ? 400.00f : 3000.00f);
         skuDao.update(sku);
+
+
     }
 }

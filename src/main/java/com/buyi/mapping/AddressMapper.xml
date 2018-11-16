@@ -7,12 +7,12 @@
         VALUES (#{userId}, #{address}, #{name}, #{telephone}, #{postcode}, #{createTime})
     </insert>
 
-    <select id="queryById" parameterType="java.lang.Integer" resultType="com.buyi.entity.Address">
-        SELECT * FROM `address` WHERE `id` = #{id}
+    <select id="queryById" resultType="com.buyi.entity.Address">
+        SELECT * FROM `address` WHERE `id` = #{id} AND `delete_status` = #{deleteStatus}
     </select>
 
-    <select id="queryByUserId" parameterType="java.lang.Integer" resultType="com.buyi.entity.Address">
-        SELECT * FROM `address` WHERE `user_id` = #{userId}
+    <select id="queryByUserId" resultType="com.buyi.entity.Address">
+        SELECT * FROM `address` WHERE `user_id` = #{userId} AND `delete_status` = #{deleteStatus}
     </select>
 
     <update id="update" parameterType="com.buyi.entity.Address">
@@ -29,6 +29,9 @@
             </if>
             <if test="postcode != null">
                 `postcode` = #{postcode},
+            </if>
+            <if test="deleteStatus != null">
+                `delete_status` = #{deleteStatus}
             </if>
         </set>
         WHERE `id` = #{id}

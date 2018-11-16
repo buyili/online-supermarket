@@ -1,6 +1,7 @@
 package com.buyi.dao;
 
 import com.buyi.SpringBootApplicationTestDao;
+import com.buyi.commons.util.UUIDByTime;
 import com.buyi.entity.OrderSKU;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,12 +30,12 @@ public class OrderSKUDaoTest {
         orderSKU.setAfterSale(1);
         orderSKU.setGoodsId(1);
         orderSKU.setGoodsName("oppo find x");
-        orderSKU.setOrderId(1);
+        orderSKU.setOrderId(UUIDByTime.getUUID());
         orderSKU.setSkuCount(3);
         orderSKU.setSkuPrice(3000.00f);
         orderSKU.setSkuSum(9000.00f);
         orderSKU.setSkuDetail("yellow; 8G+128G; made in china");
-//        orderSKUDao.add(orderSKU);
+        //orderSKUDao.add(orderSKU);
 //        orderSKUDao.add(orderSKU);
     }
 
@@ -47,7 +48,7 @@ public class OrderSKUDaoTest {
     @Test
     public void queryByForeignKey() {
         OrderSKU condition = new OrderSKU();
-        condition.setOrderId(1);
+        condition.setOrderId(UUIDByTime.getUUID());
         condition.setGoodsId(1);
         List<OrderSKU> byGoodsIdAndOrderId = orderSKUDao.queryByForeignKey(condition);
         System.out.println(byGoodsIdAndOrderId.size());
@@ -56,7 +57,7 @@ public class OrderSKUDaoTest {
         List<OrderSKU> byGoodsId = orderSKUDao.queryByForeignKey(condition);
         System.out.println(byGoodsId.size());
 
-        condition.setOrderId(1);
+        condition.setOrderId(UUIDByTime.getUUID());
         condition.setGoodsId(null);
         List<OrderSKU> byOrderId = orderSKUDao.queryByForeignKey(condition);
         System.out.println(byOrderId.size());
@@ -65,7 +66,7 @@ public class OrderSKUDaoTest {
     @Test
     public void update() {
         OrderSKU orderSKU = orderSKUDao.queryById(1);
-        orderSKU.setOrderId(orderSKU.getOrderId() == 1 ? 2 : 1);
+        orderSKU.setSkuCount(orderSKU.getSkuCount() == 3 ? 2 : 3);
         orderSKUDao.update(orderSKU);
     }
 }

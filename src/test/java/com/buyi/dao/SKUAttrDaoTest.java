@@ -1,6 +1,7 @@
 package com.buyi.dao;
 
 import com.buyi.SpringBootApplicationTestDao;
+import com.buyi.commons.util.UUIDByTime;
 import com.buyi.entity.SKU;
 import com.buyi.entity.SKUAttr;
 import org.junit.Test;
@@ -29,7 +30,7 @@ public class SKUAttrDaoTest {
         SKUAttr skuAttr = new SKUAttr();
         skuAttr.setAttrId(1);
         skuAttr.setAttrValueId(1);
-        skuAttr.setSkuId(1);
+        skuAttr.setSkuId(UUIDByTime.getUUID());
 //        skuAttrDao.add(skuAttr);
 //        skuAttrDao.add(skuAttr);
     }
@@ -37,7 +38,7 @@ public class SKUAttrDaoTest {
     @Test
     public void queryByForeignKey() {
         SKUAttr skuAttr = new SKUAttr();
-        skuAttr.setSkuId(1);
+        skuAttr.setSkuId("i");
         List<SKU> bySKUID = skuAttrDao.queryByForeignKey(skuAttr);
         System.out.println(bySKUID.size());
 

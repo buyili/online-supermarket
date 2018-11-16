@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class OrderSKU extends CommonField implements Serializable {
     private Integer id;
-    private Integer orderId;
+    private String orderId;
     private Integer goodsId;
     private String goodsName;
     private Integer skuCount;
@@ -24,11 +24,11 @@ public class OrderSKU extends CommonField implements Serializable {
         this.id = id;
     }
 
-    public Integer getOrderId() {
+    public String getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Integer orderId) {
+    public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
 

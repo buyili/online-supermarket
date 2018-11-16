@@ -26,10 +26,9 @@ public class CategoryDaoTest {
     @Test
     public void add() {
         Category category = new Category();
-        //category.setDeleteStatus(2);
         category.setName("buyi");
         category.setParentId(2);
-//        categoryDao.add(category);
+        categoryDao.add(category);
 //        categoryDao.add(category);
     }
 
@@ -42,6 +41,12 @@ public class CategoryDaoTest {
     @Test
     public void queryByParentId() {
         List<Category> categories = categoryDao.queryByParentId(2);
+        System.out.println(categories.size());
+    }
+
+    @Test
+    public void queryByLevel(){
+        List<Category> categories = categoryDao.queryByLevel(1);
         System.out.println(categories.size());
     }
 

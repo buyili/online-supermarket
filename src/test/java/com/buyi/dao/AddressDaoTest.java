@@ -2,6 +2,7 @@ package com.buyi.dao;
 
 import com.buyi.SpringBootApplicationTestDao;
 import com.buyi.entity.Address;
+import com.google.gson.Gson;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,9 +23,11 @@ public class AddressDaoTest {
     @Resource
     private AddressDao addressDao;
 
+    @Resource
+    private Gson gson;
+
     @Test
     public void add() {
-
         Address address = new Address();
         address.setName("buii");
         address.setPostcode("444444");
@@ -32,26 +35,27 @@ public class AddressDaoTest {
         address.setUserId(1);
         address.setAddress("si chuan shen cheng du shi jin jiang qu shui mu hua xia!");
         address.setCreateTime(new Date());
-        addressDao.add(address);
-        addressDao.add(address);
+//        addressDao.add(address);
+//        addressDao.add(address);
     }
 
     @Test
     public void queryById() {
-        Address address = addressDao.queryById(1);
+        Address address = addressDao.queryById(1,2);
         System.out.println(address.getAddress());
+        System.out.println(gson.toJson(address));
 
     }
 
     @Test
     public void queryByUserId() {
-        List<Address> addresses = addressDao.queryByUserId(1);
+        List<Address> addresses = addressDao.queryByUserId(1,1);
         System.out.println(addresses.size());
     }
 
     @Test
     public void update() {
-        Address address = addressDao.queryById(2);
+        Address address = addressDao.queryById(2,1);
         address.setAddress("update address");
         addressDao.update(address);
 

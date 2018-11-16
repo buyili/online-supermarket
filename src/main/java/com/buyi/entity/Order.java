@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by 1132989278@qq.com on 2018/11/13 10:21
  */
 public class Order extends CommonField implements Serializable {
-    private Integer id;
+    private String id;
     private Integer userId;
     private Integer storeId;
     private Float sum;
@@ -16,11 +16,11 @@ public class Order extends CommonField implements Serializable {
     private String expressNum;
     private Integer payMethod;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -40,7 +40,7 @@ public class Order extends CommonField implements Serializable {
         this.storeId = storeId;
     }
 
-    public float getSum() {
+    public Float getSum() {
         return sum;
     }
 

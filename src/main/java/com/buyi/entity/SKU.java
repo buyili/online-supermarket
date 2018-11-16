@@ -7,17 +7,18 @@ import java.io.Serializable;
  */
 public class SKU extends CommonField implements Serializable {
 
-    private Integer id;
+    private String id;
     private Integer goodsId;
     private String skuAttr;
     private Integer count;
     private Float price;
+    private String detail;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -51,5 +52,13 @@ public class SKU extends CommonField implements Serializable {
 
     public void setPrice(Float price) {
         this.price = price;
+    }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 }

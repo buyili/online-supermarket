@@ -3,8 +3,8 @@
 <mapper namespace="com.buyi.dao.AfterSaleDao">
     <insert id="add" parameterType="com.buyi.entity.AfterSale">
         INSERT INTO `after_sale`
-        (`order_sku_id`, `user_id`, `cause`, `method`, `status`, `express_detail`, `create_time`)
-        VALUES (#{orderSKUId}, #{userId}, #{cause}, #{method}, #{status}, #{expressDetail}, #{createTime})
+        (`order_sku_id`, `user_id`, `store_id`, `cause`, `method`, `express_detail`, `create_time`)
+        VALUES (#{orderSKUId}, #{userId}, #{storeId}, #{cause}, #{method}, #{expressDetail}, #{createTime})
     </insert>
 
     <select id="queryById" parameterType="java.lang.Integer" resultType="com.buyi.entity.AfterSale">

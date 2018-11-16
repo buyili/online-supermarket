@@ -26,6 +26,7 @@ public class AfterSaleDaoTest {
     public void add() {
         AfterSale afterSale = new AfterSale();
         afterSale.setUserId(1);
+        afterSale.setStoreId(1);
         afterSale.setCause("退钱");
         afterSale.setMethod(2);
         afterSale.setOrderSKUId(3);

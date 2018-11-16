@@ -15,6 +15,8 @@ public interface CategoryDao {
 
     List<Category> queryByParentId(int parentId);
 
+    List<Category> queryByLevel(int level);
+
     void update(Category category);
 
 }

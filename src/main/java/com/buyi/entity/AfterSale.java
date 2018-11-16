@@ -10,6 +10,7 @@ public class AfterSale extends CommonField implements Serializable {
     private Integer id;
     private Integer orderSKUId;
     private Integer userId;
+    private Integer storeId;
     private String cause;
     private String result;
     private Integer method;
@@ -38,6 +39,14 @@ public class AfterSale extends CommonField implements Serializable {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public Integer getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(Integer storeId) {
+        this.storeId = storeId;
     }
 
     public String getCause() {

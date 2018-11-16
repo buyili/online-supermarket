@@ -11,7 +11,7 @@ public interface OrderDao {
 
     void add(Order order);
 
-    Order queryById(int id);
+    Order queryById(String id);
 
     List<Order> queryByForeignKey(Order order);
 

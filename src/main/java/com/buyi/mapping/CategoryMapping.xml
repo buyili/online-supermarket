@@ -2,7 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.buyi.dao.CategoryDao">
     <insert id="add" parameterType="com.buyi.entity.Category">
-        INSERT INTO `category` (`name`, `parent_id`) VALUES (#{name}, #{parentId})
+        INSERT INTO `category` (`name`, `parent_id`
+        <if test="level != null">
+            , `level`
+        </if>
+        )
+        VALUES (#{name}, #{parentId}
+        <if test="level != null">
+            , #{level}
+        </if>
+        )
     </insert>
 
     <select id="queryById" parameterType="java.lang.Integer" resultType="com.buyi.entity.Category">
@@ -11,6 +20,10 @@
 
     <select id="queryByParentId" parameterType="java.lang.Integer" resultType="com.buyi.entity.Category">
         SELECT * FROM `category` WHERE `parent_id` = #{parentId}
+    </select>
+
+    <select id="queryByLevel" parameterType="java.lang.Integer" resultType="com.buyi.entity.Category">
+        SELECT * FROM `category` WHERE `level` = #{level}
     </select>
 
     <update id="update" parameterType="com.buyi.entity.Category">
@@ -24,6 +37,9 @@
             </if>
             <if test="deleteStatus != null">
                 `delete_status` = #{deleteStatus},
+            </if>
+            <if test="level != null">
+                `level` = #{level},
             </if>
         </set>
         WHERE `id` = #{id}

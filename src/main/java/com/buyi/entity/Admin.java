@@ -1,5 +1,7 @@
 package com.buyi.entity;
 
+import java.util.List;
+
 /**
  * Created by 1132989278@qq.com on 2018/11/5 15:56
  */
@@ -10,6 +12,8 @@ public class Admin {
     private String name;
 
     private String psw;
+
+    List<User> users;
 
     public Integer getId() {
         return id;
@@ -33,5 +37,13 @@ public class Admin {
 
     public void setPsw(String psw) {
         this.psw = psw;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }

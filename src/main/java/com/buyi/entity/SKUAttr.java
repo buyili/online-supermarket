@@ -10,7 +10,7 @@ public class SKUAttr extends CommonField implements Serializable {
     private Integer id;
     private Integer attrId;
     private Integer attrValueId;
-    private Integer skuId;
+    private String skuId;
 
     public Integer getId() {
         return id;
@@ -36,11 +36,11 @@ public class SKUAttr extends CommonField implements Serializable {
         this.attrValueId = attrValueId;
     }
 
-    public Integer getSkuId() {
+    public String getSkuId() {
         return skuId;
     }
 
-    public void setSkuId(Integer skuId) {
+    public void setSkuId(String skuId) {
         this.skuId = skuId;
     }
 }

@@ -3,9 +3,9 @@
 <mapper namespace="com.buyi.dao.OrderDao">
     <insert id="add" parameterType="com.buyi.entity.Order">
         INSERT INTO `order`
-        (`user_id`, `store_id`, `name`, `sum`, `address`, `express_num`, `create_time`)
+        (`id`, `user_id`, `store_id`, `name`, `sum`, `address`, `express_num`, `create_time`)
         VALUES
-        (#{userId}, #{storeId}, #{name}, #{sum}, #{address}, #{expressNum}, #{createTime})
+        (#{id}, #{userId}, #{storeId}, #{name}, #{sum}, #{address}, #{expressNum}, #{createTime})
     </insert>
 
     <select id="queryById" parameterType="java.lang.Integer" resultType="com.buyi.entity.Order">

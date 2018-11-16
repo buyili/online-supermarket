@@ -10,6 +10,7 @@ public class Category extends CommonField implements Serializable {
     private String name;
     private Integer parentId;
     private Integer deleteStatus;
+    private Integer level;
 
     public Integer getId() {
         return id;
@@ -41,5 +42,13 @@ public class Category extends CommonField implements Serializable {
 
     public void setDeleteStatus(Integer deleteStatus) {
         this.deleteStatus = deleteStatus;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 }
