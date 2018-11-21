@@ -3,6 +3,7 @@ package com.buyi.service.impl;
 import com.buyi.dao.GoodsDao;
 import com.buyi.dto.request.goods.AddGoodsRequest;
 import com.buyi.dto.request.goods.ModifyGoodsRequest;
+import com.buyi.dto.request.goods.QueryGoodsRequest;
 import com.buyi.entity.Goods;
 import com.buyi.service.GoodsService;
 import org.springframework.beans.BeanUtils;
@@ -33,18 +34,10 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public List<Goods> queryByCategoryId(int categoryId) {
-        return goodsDao.queryByCategoryId(categoryId);
-    }
-
-    @Override
-    public List<Goods> queryByStoreId(int storeId) {
-        return goodsDao.queryByStoreId(storeId);
-    }
-
-    @Override
-    public List<Goods> queryByTrademarkId(int trademarkId) {
-        return goodsDao.queryByTrademarkId(trademarkId);
+    public List<Goods> queryByForeignKey(QueryGoodsRequest request) {
+        Goods goods = new Goods();
+        BeanUtils.copyProperties(request, goods);
+        return goodsDao.queryByForeignKey(goods);
     }
 
     @Override

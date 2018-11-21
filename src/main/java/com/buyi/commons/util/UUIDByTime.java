@@ -11,28 +11,14 @@ import java.util.Date;
  */
 public class UUIDByTime {
 
-    private final static SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmssS");
-
-    private final static NumberFormat numberFormat = new DecimalFormat("0000");
+    private final static SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 
     private final static FieldPosition _FIELD = new FieldPosition(1);
-
-    private static volatile int seq = 1;
-
-    private final static int max = 9999;
 
     public static String getUUID() {
         StringBuffer buffer = new StringBuffer();
         format.format(new Date(), buffer, _FIELD);
-        buffer.append("-");
-        synchronized (UUIDByTime.class) {
-            numberFormat.format(seq, buffer, _FIELD);
-            if (seq == max) {
-                seq = 0;
-            } else {
-                seq++;
-            }
-        }
+        buffer.append(System.nanoTime());
         return buffer.toString();
     }
 

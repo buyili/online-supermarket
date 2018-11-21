@@ -6,6 +6,14 @@
         VALUES (#{id}, #{goodsId}, #{skuAttr}, #{price}, #{count}, #{detail})
     </insert>
 
+    <insert id="addList">
+        INSERT INTO `sku` (`id`, `goods_id`, `sku_attr`, `price`, `count`, `detail`)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.id}, #{item.goodsId}, #{item.skuAttr}, #{item.price}, #{item.count}, #{item.detail})
+        </foreach>
+    </insert>
+
     <select id="queryById" parameterType="java.lang.String" resultType="com.buyi.entity.SKU">
         SELECT * FROM `sku` WHERE `id` = #{id}
     </select>

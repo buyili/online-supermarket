@@ -10,7 +10,9 @@ import java.util.List;
  */
 public interface AttrService {
 
-    void add(Attr[] attrs);
+    Attr queryById(int id);
+
+    void add(List<Attr> attrs);
 
     void modify(ModifyAttrRequest request);
 

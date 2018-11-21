@@ -9,6 +9,8 @@ public enum ResponseStatusEnum {
     REDIRECT(300),
     CLIENT_ERR(400,"客户端错误"),
     PARAMETER_ERR(401,"参数错误"),
+    NOT_REGISTER(402,"未注册"),
+    NOT_STORE(403,"未开通商店"),
 
     SERVER_ERR(500,"服务端错误")
     ;

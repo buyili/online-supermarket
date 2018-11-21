@@ -17,5 +17,7 @@ public interface AfterSaleDao {
 
     List<AfterSale> queryByUserId(int userId);
 
+    List<AfterSale> queryByStoreId(int storeId);
+
     void update(AfterSale afterSale);
 }

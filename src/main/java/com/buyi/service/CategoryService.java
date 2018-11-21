@@ -2,6 +2,7 @@ package com.buyi.service;
 
 import com.buyi.dto.request.category.AddCategoryRequest;
 import com.buyi.dto.request.category.ModifyCategoryRequest;
+import com.buyi.dto.response.category.CategoryResponse;
 import com.buyi.entity.Category;
 
 import java.util.List;
@@ -15,7 +16,11 @@ public interface CategoryService {
 
     List<Category> queryByLevel(int level);
 
-    List<Category> queryByParentId(int parentId);
+    List<CategoryResponse> queryByParentId(int parentId);
+
+    List<CategoryResponse> queryAll();
 
     void modify(ModifyCategoryRequest request);
+
+    void delete(int id);
 }

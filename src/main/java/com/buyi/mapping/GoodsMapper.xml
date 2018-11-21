@@ -10,16 +10,19 @@
         SELECT * FROM  `goods` WHERE `id` = #{id}
     </select>
 
-    <select id="queryByCategoryId" parameterType="java.lang.Integer" resultType="com.buyi.entity.Goods">
-        SELECT * FROM `goods` WHERE `category_id` = #{categoryId}
-    </select>
-
-    <select id="queryByStoreId" parameterType="java.lang.Integer" resultType="com.buyi.entity.Goods">
-        SELECT * FROM `goods` WHERE `store_id` = #{storeId}
-    </select>
-
-    <select id="queryByTrademarkId" parameterType="java.lang.Integer" resultType="com.buyi.entity.Goods">
-        SELECT * FROM `goods` WHERE `trademark_id` = #{trademarkId}
+    <select id="queryByForeignKey" parameterType="com.buyi.entity.Goods" resultType="com.buyi.entity.Goods">
+        SELECT * FROM `goods`
+        <where>
+            <if test="storeId != null">
+                `store_id` = #{storeId},
+            </if>
+            <if test="categoryId != null">
+                `category_id` = #{categoryId},
+            </if>
+            <if test="trademarkId != null">
+                `trademark_id` = #{trademarkId},
+            </if>
+        </where>
     </select>
 
     <update id="update" parameterType="com.buyi.entity.Goods">

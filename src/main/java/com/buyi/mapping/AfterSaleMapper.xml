@@ -15,6 +15,10 @@
         SELECT * FROM `after_sale` WHERE `user_id` = #{userId}
     </select>
 
+    <select id="queryByStoreId" parameterType="java.lang.Integer" resultType="com.buyi.entity.AfterSale">
+        SELECT * FROM `after_sale` WHERE `store_id` = #{storeId}
+    </select>
+
     <update id="update" parameterType="com.buyi.entity.AfterSale">
         UPDATE `after_sale`
         <set>

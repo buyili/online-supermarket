@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -24,8 +25,7 @@ public class SKUDaoTest {
     @Resource
     SKUDao skuDao;
 
-    @Test
-    public void add() {
+    private SKU getSKU(){
         SKU sku = new SKU();
         sku.setCount(200);
         sku.setGoodsId(1);
@@ -33,7 +33,12 @@ public class SKUDaoTest {
         sku.setSkuAttr("2:3,4:4,5:5,6:4");
         sku.setDetail("yellow ");
         sku.setId(UUIDByTime.getUUID());
-        skuDao.add(sku);
+        return sku;
+    }
+
+    @Test
+    public void add() {
+        skuDao.add(getSKU());
 //        skuDao.add(sku);
     }
 
@@ -56,5 +61,14 @@ public class SKUDaoTest {
         skuDao.update(sku);
 
 
+    }
+
+    @Test
+    public void addList() {
+        List<SKU> list = new ArrayList<>();
+        for(int i = 0; i<3;i++){
+            list.add(getSKU());
+        }
+        skuDao.addList(list);
     }
 }

@@ -1,5 +1,7 @@
 package com.buyi.dao;
 
+import com.buyi.dto.request.order.QueryOrderForPage;
+import com.buyi.dto.response.order.OrderResponse;
 import com.buyi.entity.Order;
 
 import java.util.List;
@@ -12,6 +14,8 @@ public interface OrderDao {
     void add(Order order);
 
     Order queryById(String id);
+
+    List<OrderResponse> queryForPage(QueryOrderForPage forPage);
 
     List<Order> queryByForeignKey(Order order);
 

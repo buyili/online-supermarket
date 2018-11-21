@@ -2,6 +2,7 @@ package com.buyi.service;
 
 import com.buyi.dto.request.goods.AddGoodsRequest;
 import com.buyi.dto.request.goods.ModifyGoodsRequest;
+import com.buyi.dto.request.goods.QueryGoodsRequest;
 import com.buyi.entity.Goods;
 
 import java.util.List;
@@ -15,11 +16,7 @@ public interface GoodsService {
 
     Goods queryById(int id);
 
-    List<Goods> queryByCategoryId(int categoryId);
-
-    List<Goods> queryByStoreId(int storeId);
-
-    List<Goods> queryByTrademarkId(int trademarkId);
+    List<Goods> queryByForeignKey(QueryGoodsRequest request);
 
     void modify(ModifyGoodsRequest request);
 

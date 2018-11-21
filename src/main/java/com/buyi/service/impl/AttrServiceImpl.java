@@ -20,7 +20,12 @@ public class AttrServiceImpl implements AttrService {
     private AttrDao attrDao;
 
     @Override
-    public void add(Attr[] attrs) {
+    public Attr queryById(int id) {
+        return attrDao.queryById(id);
+    }
+
+    @Override
+    public void add(List<Attr> attrs) {
         for (Attr attr : attrs) {
             attrDao.add(attr);
         }
@@ -29,7 +34,7 @@ public class AttrServiceImpl implements AttrService {
     @Override
     public void modify(ModifyAttrRequest request) {
         Attr attr = new Attr();
-        BeanUtils.copyProperties(request,attr);
+        BeanUtils.copyProperties(request, attr);
         attrDao.update(attr);
     }
 

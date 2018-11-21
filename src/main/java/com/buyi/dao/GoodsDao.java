@@ -13,11 +13,7 @@ public interface GoodsDao {
 
     Goods queryById(int id);
 
-    List<Goods> queryByStoreId(int storeId);
-
-    List<Goods> queryByCategoryId(int categoryId);
-
-    List<Goods> queryByTrademarkId(int trademarkId);
+    List<Goods> queryByForeignKey(Goods goods);
 
     void update(Goods goods);
 }

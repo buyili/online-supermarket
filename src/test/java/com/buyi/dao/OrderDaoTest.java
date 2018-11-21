@@ -2,6 +2,8 @@ package com.buyi.dao;
 
 import com.buyi.SpringBootApplicationTestDao;
 import com.buyi.commons.util.UUIDByTime;
+import com.buyi.dto.request.order.QueryOrderForPage;
+import com.buyi.dto.response.order.OrderResponse;
 import com.buyi.entity.Order;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -70,5 +72,14 @@ public class OrderDaoTest {
         Order order = orderDao.queryById("1");
         order.setUserId(1 == order.getUserId() ? 2 : 1);
         orderDao.update(order);
+    }
+
+    @Test
+    public void queryAll() {
+        QueryOrderForPage forPage = new QueryOrderForPage();
+        forPage.setLimit(20);
+        forPage.setOffset(1);
+        List<OrderResponse> orderResponses = orderDao.queryForPage(forPage);
+        System.out.println(orderResponses.size());
     }
 }

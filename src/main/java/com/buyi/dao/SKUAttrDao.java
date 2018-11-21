@@ -12,6 +12,8 @@ public interface SKUAttrDao {
 
     void add(SKUAttr skuAttr);
 
+    void addList(List<SKUAttr> skuAttrs);
+
     List<SKU> queryByForeignKey(SKUAttr skuAttr);
 
 

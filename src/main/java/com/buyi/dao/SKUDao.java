@@ -11,6 +11,8 @@ public interface SKUDao {
 
     void add(SKU sku);
 
+    void addList(List<SKU> skuList);
+
     SKU queryById(String id);
 
     List<SKU> queryByGoodsId(int goodsId);

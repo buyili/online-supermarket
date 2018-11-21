@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by 1132989278@qq.com on 2018/11/16 17:00
@@ -40,13 +42,41 @@ public class SKUServiceImpl implements SKUService {
         newSKU.setId(skuId);
         skuDao.add(newSKU);
 
-        SKUAttr newSkUAttr = new SKUAttr();
-        newSkUAttr.setSkuId(skuId);
+        List<SKUAttr> skuAttrs = new ArrayList<>();
         for (SKUAttrSerializableUtil.SKUAttrValue attrValue : attrValues) {
+            SKUAttr newSkUAttr = new SKUAttr();
+            newSkUAttr.setSkuId(skuId);
             newSkUAttr.setAttrId(attrValue.getAttrId());
             newSkUAttr.setAttrValueId(attrValue.getValueId());
-            skuAttrDao.add(newSkUAttr);
+            skuAttrs.add(newSkUAttr);
         }
+        skuAttrDao.addList(skuAttrs);
+    }
+
+    @Override
+    @Transactional
+    public void addList(List<AddSKURequest> requests) {
+        List<SKU> skuList = new ArrayList<>();
+        List<SKUAttr> skuAttrs = new ArrayList<>();
+        for (AddSKURequest request : requests) {
+            String skuAttr = request.getSkuAttr();
+            SKUAttrSerializableUtil.SKUAttrValue[] attrValues = SKUAttrSerializableUtil.deserialize(skuAttr);
+            String skuId = UUIDByTime.getUUID();
+            SKU newSKU = new SKU();
+            BeanUtils.copyProperties(request, newSKU);
+            newSKU.setId(skuId);
+            skuList.add(newSKU);
+
+            for (SKUAttrSerializableUtil.SKUAttrValue attrValue : attrValues) {
+                SKUAttr newSkUAttr = new SKUAttr();
+                newSkUAttr.setSkuId(skuId);
+                newSkUAttr.setAttrId(attrValue.getAttrId());
+                newSkUAttr.setAttrValueId(attrValue.getValueId());
+                skuAttrs.add(newSkUAttr);
+            }
+        }
+        skuDao.addList(skuList);
+        skuAttrDao.addList(skuAttrs);
     }
 
     @Override

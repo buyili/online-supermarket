@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by 1132989278@qq.com on 2018/11/15 15:40
@@ -21,8 +22,13 @@ public class AttrValueServiceImpl implements AttrValueService {
     private AttrValueDao attrValueDao;
 
     @Override
+    public List<AttrValue> queryForAttr(int attrId) {
+        return attrValueDao.queryByAttrId(attrId);
+    }
+
+    @Override
     @Transactional
-    public void add(AttrValue[] attrValues) {
+    public void add(List<AttrValue> attrValues) {
         for(AttrValue attrValue : attrValues){
             attrValueDao.add(attrValue);
         }

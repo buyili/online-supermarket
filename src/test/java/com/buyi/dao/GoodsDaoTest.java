@@ -40,23 +40,6 @@ public class GoodsDaoTest {
         System.out.println(goods.getName());
     }
 
-    @Test
-    public void queryByStoreId() {
-        List<Goods> goods = goodsDao.queryByStoreId(1);
-        System.out.println(goods.size());
-    }
-
-    @Test
-    public void queryByCategoryId() {
-        List<Goods> goods = goodsDao.queryByCategoryId(1);
-        System.out.println(goods.size());
-    }
-
-    @Test
-    public void queryByTrademarkId() {
-        List<Goods> goods = goodsDao.queryByTrademarkId(1);
-        System.out.println(goods.size());
-    }
 
     @Test
     public void update() {

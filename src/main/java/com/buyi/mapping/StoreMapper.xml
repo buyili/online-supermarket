@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.buyi.dao.StoreDao">
     <insert id="add" parameterType="com.buyi.entity.Store">
-        INSERT INTO `store` (`name`, `user_id`, `status`) VALUES (#{name}, #{userId}, #{status})
+        <bind name="_NORMAL" value="@com.buyi.constant.StoreStatusEnum@NORMAL.status"/>
+        INSERT INTO `store` (`name`, `user_id`, `status`) VALUES (#{name}, #{userId}, #{_NORMAL})
     </insert>
 
     <select id="queryById" parameterType="java.lang.Integer" resultType="com.buyi.entity.Store">

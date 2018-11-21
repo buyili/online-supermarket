@@ -12,6 +12,64 @@
         SELECT * FROM `order` WHERE `id` = #{id}
     </select>
 
+    <resultMap id="orderResponse" type="com.buyi.dto.response.order.OrderResponse">
+        <id property="id" column="order_id"/>
+        <result property="name" column="order_name"/>
+        <result property="sum" column="order_sum"/>
+        <result property="address" column="order_address"/>
+        <result property="storeId" column="order_store_id"/>
+        <association property="store" javaType="com.buyi.entity.Store" columnPrefix="store_">
+            <id property="id" column="id"/>
+            <result property="name" column="name"/>
+        </association>
+        <collection property="orderSKUS" ofType="com.buyi.entity.OrderSKU" columnPrefix="order_sku_">
+            <id property="id" column="id"/>
+            <result property="goodsName" column="goods_name"/>
+            <result property="skuCount" column="sku_count"/>
+            <result property="skuPrice" column="sku_price"/>
+            <result property="skuDetail" column="sku_detail"/>
+        </collection>
+    </resultMap>
+
+    <select id="queryForPage" parameterType="com.buyi.dto.request.order.QueryOrderForPage" resultMap="orderResponse">
+        SELECT
+            o.*,
+            os.id AS order_sku_id,
+            os.goods_name AS order_sku_goods_name,
+            os.sku_count AS order_sku_sku_count,
+            os.sku_price AS order_sku_sku_price,
+            os.sku_detail AS order_sku_sku_detail
+        FROM
+            (
+                SELECT
+                    o.*,
+                    `id` AS store_id,
+                    `name` AS store_name
+                FROM
+                    (
+                        SELECT
+                            id AS order_id,
+                            `name` AS order_name,
+                            `sum` AS order_sum,
+                            address order_address,
+                            store_id AS order_store_id
+                        FROM `order`
+                        <where>
+                            <if test="userId != null">
+                                AND `user_id` = #{userId}
+                            </if>
+                        </where>
+                        ORDER BY
+                            create_time DESC
+                            LIMIT #{limit} OFFSET #{offset}
+                    ) AS o
+                LEFT JOIN `store` AS s ON o.order_store_id = s.id
+            ) AS o
+        LEFT JOIN `order_sku` AS os ON o.order_id = os.order_id
+    </select>
+
+
+
     <select id="queryByForeignKey" parameterType="com.buyi.entity.Order" resultType="com.buyi.entity.Order">
         SELECT * FROM `order`
         <where>

@@ -5,6 +5,14 @@
         INSERT INTO `sku_attr` (`attr_id`, `attr_value_id`, `sku_id`) VALUES (#{attrId}, #{attrValueId}, #{skuId})
     </insert>
 
+    <insert id="addList">
+        INSERT INTO `sku_attr` (`attr_id`, `attr_value_id`, `sku_id`)
+        VALUES 
+        <foreach collection="list" item="item" separator=",">
+            (#{item.attrId}, #{item.attrValueId}, #{item.skuId})
+        </foreach>
+    </insert>
+
     <select id="queryByForeignKey" parameterType="com.buyi.entity.SKUAttr" resultType="com.buyi.entity.SKUAttr">
         SELECT * FROM `sku_attr`
         <where>

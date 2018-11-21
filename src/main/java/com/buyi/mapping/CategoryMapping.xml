@@ -19,11 +19,18 @@
     </select>
 
     <select id="queryByParentId" parameterType="java.lang.Integer" resultType="com.buyi.entity.Category">
-        SELECT * FROM `category` WHERE `parent_id` = #{parentId}
+        <bind name="_NORMAL" value="@com.buyi.constant.DeleteStatusEnum@NORMAL.status"/>
+        SELECT * FROM `category` WHERE `parent_id` = #{parentId} AND `delete_status` = #{_NORMAL}
     </select>
 
     <select id="queryByLevel" parameterType="java.lang.Integer" resultType="com.buyi.entity.Category">
-        SELECT * FROM `category` WHERE `level` = #{level}
+        <bind name="_NORMAL" value="@com.buyi.constant.DeleteStatusEnum@NORMAL.status"/>
+        SELECT * FROM `category` WHERE `level` = #{level} AND `delete_status` = #{_NORMAL}
+    </select>
+
+    <select id="queryAll" resultType="com.buyi.entity.Category">
+        <bind name="_NORMAL" value="@com.buyi.constant.DeleteStatusEnum@NORMAL.status"/>
+        SELECT * FROM `category` WHERE `delete_status` = #{_NORMAL}
     </select>
 
     <update id="update" parameterType="com.buyi.entity.Category">

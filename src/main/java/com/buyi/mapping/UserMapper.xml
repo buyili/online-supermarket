@@ -25,4 +25,8 @@
         </set>
         WHERE `id` = #{id}
     </update>
+
+    <select id="queryByCondition" parameterType="com.buyi.entity.User" resultType="com.buyi.entity.User">
+        SELECT * FROM `user` WHERE `telephone` = #{telephone}
+    </select>
 </mapper>

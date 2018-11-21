@@ -17,6 +17,8 @@ public interface CategoryDao {
 
     List<Category> queryByLevel(int level);
 
+    List<Category> queryAll();
+
     void update(Category category);
 
 }

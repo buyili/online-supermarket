@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -51,5 +52,20 @@ public class SKUAttrDaoTest {
         skuAttr.setAttrId(1);
         List<SKU> byAttrId = skuAttrDao.queryByForeignKey(skuAttr);
         System.out.println(byAttrId.size());
+    }
+
+    @Test
+    public void addList() {
+        SKUAttr skuAttr = new SKUAttr();
+        skuAttr.setSkuId(UUIDByTime.getUUID());
+        skuAttr.setAttrId(2);
+        skuAttr.setAttrValueId(3);
+        List<SKUAttr> skuAttrs = new ArrayList<>();
+        int i = 0;
+        while (i < 3){
+            skuAttrs.add(skuAttr);
+            i++;
+        }
+        skuAttrDao.addList(skuAttrs);
     }
 }

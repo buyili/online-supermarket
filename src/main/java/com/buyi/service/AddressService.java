@@ -2,6 +2,7 @@ package com.buyi.service;
 
 import com.buyi.dto.request.address.AddAddressRequest;
 import com.buyi.dto.request.address.UpdateAddressRequest;
+import com.buyi.dto.response.address.AddressResponse;
 import com.buyi.entity.Address;
 
 import javax.validation.constraints.NotNull;
@@ -16,8 +17,10 @@ public interface AddressService {
 
     void update(UpdateAddressRequest address);
 
-    void delete(@NotNull Integer id);
+    void delete(Integer id);
 
-    List<Address> queryByUserId(@NotNull Integer userId);
+    AddressResponse queryById(Integer id);
+
+    List<AddressResponse> queryByUserId(Integer userId);
 
 }

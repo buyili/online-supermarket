@@ -3,6 +3,7 @@ package com.buyi.service.impl;
 import com.buyi.SpringBootApplicationTestDao;
 import com.buyi.dto.request.address.AddAddressRequest;
 import com.buyi.dto.request.address.UpdateAddressRequest;
+import com.buyi.dto.response.address.AddressResponse;
 import com.buyi.entity.Address;
 import com.buyi.service.AddressService;
 import org.junit.Test;
@@ -63,7 +64,7 @@ public class AddressServiceImplTest {
 
     @Test
     public void queryByUserId() {
-        List<Address> addresses = addressService.queryByUserId(1);
+        List<AddressResponse> addresses = addressService.queryByUserId(1);
         System.out.println(addresses.size());
 
     }

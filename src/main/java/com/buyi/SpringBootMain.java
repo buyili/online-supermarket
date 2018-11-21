@@ -3,6 +3,7 @@ package com.buyi;
 import com.buyi.dao.UserDao;
 import com.buyi.mapper.AdminMapper;
 import com.buyi.properties.DataSourceProperties;
+import com.buyi.properties.ResourceUrlProperties;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -21,7 +22,7 @@ import javax.annotation.Resource;
 @EnableAutoConfiguration
 @ComponentScan("com.buyi.*")
 @MapperScan("com.buyi.*")
-@EnableConfigurationProperties(DataSourceProperties.class)
+@EnableConfigurationProperties({DataSourceProperties.class,ResourceUrlProperties.class})
 public class SpringBootMain implements CommandLineRunner {
 
     @Resource

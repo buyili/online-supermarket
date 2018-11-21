@@ -17,7 +17,7 @@ public interface UserDao {
 
     void update(User user);
 
-
+    User queryByTelephone(String telephone);
 
 
 }

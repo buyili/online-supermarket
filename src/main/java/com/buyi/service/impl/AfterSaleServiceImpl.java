@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by 1132989278@qq.com on 2018/11/15 11:26
@@ -33,6 +34,21 @@ public class AfterSaleServiceImpl implements AfterSaleService {
         Date date = new Date();
         afterSale.setCreateTime(date);
         afterSaleDao.add(afterSale);
+    }
+
+    @Override
+    public AfterSale queryById(int id) {
+        return afterSaleDao.queryById(id);
+    }
+
+    @Override
+    public List<AfterSale> queryAllForUser(int userId) {
+        return afterSaleDao.queryByUserId(userId);
+    }
+
+    @Override
+    public List<AfterSale> queryAllForStore(int storeId) {
+        return afterSaleDao.queryByStoreId(storeId);
     }
 
     @Override
@@ -70,7 +86,7 @@ public class AfterSaleServiceImpl implements AfterSaleService {
             throw new GlobalException(ResponseStatusEnum.PARAMETER_ERR);
         }
         AfterSale afterSale = new AfterSale();
-        BeanUtils.copyProperties(request,afterSale);
+        BeanUtils.copyProperties(request, afterSale);
         afterSale.setStatus(AfterSaleStatusEnum.REFUND.getStatus());
         afterSaleDao.update(afterSale);
     }

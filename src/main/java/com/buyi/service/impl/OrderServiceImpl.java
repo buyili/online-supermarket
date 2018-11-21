@@ -7,6 +7,8 @@ import com.buyi.constant.ResponseStatusEnum;
 import com.buyi.dao.*;
 import com.buyi.dto.request.order.AddOrderRequest;
 import com.buyi.dto.request.order.ConsignmentRequest;
+import com.buyi.dto.request.order.QueryOrderForPage;
+import com.buyi.dto.response.order.OrderResponse;
 import com.buyi.entity.*;
 import com.buyi.exception.GlobalException;
 import com.buyi.service.OrderService;
@@ -18,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by 1132989278@qq.com on 2018/11/15 17:36
@@ -42,6 +45,17 @@ public class OrderServiceImpl implements OrderService {
 
     @Resource
     private AddressDao addressDao;
+
+    @Override
+    public OrderResponse queryById(String id) {
+        orderDao.queryById(id);
+        return null;
+    }
+
+    @Override
+    public List<OrderResponse> queryForPage(QueryOrderForPage forPage) {
+        return orderDao.queryForPage(forPage);
+    }
 
     @Override
     @Transactional
