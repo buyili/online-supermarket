@@ -1,7 +1,9 @@
 package com.buyi.service.impl;
 
 import com.buyi.dao.AttrValueDao;
+import com.buyi.dto.request.attr.value.AddAttrValueRequest;
 import com.buyi.dto.request.attr.value.ModifyAttrValueRequest;
+import com.buyi.dto.request.attr.value.QueryValuesRequest;
 import com.buyi.entity.AttrValue;
 import com.buyi.service.AttrValueService;
 import org.springframework.beans.BeanUtils;
@@ -22,16 +24,14 @@ public class AttrValueServiceImpl implements AttrValueService {
     private AttrValueDao attrValueDao;
 
     @Override
-    public List<AttrValue> queryForAttr(int attrId) {
-        return attrValueDao.queryByAttrId(attrId);
+    public List<AttrValue> queryForAttr(QueryValuesRequest request) {
+        return attrValueDao.queryByForeignKey(request.getAttrId(),request.getGoodsId());
     }
 
+
     @Override
-    @Transactional
-    public void add(List<AttrValue> attrValues) {
-        for(AttrValue attrValue : attrValues){
-            attrValueDao.add(attrValue);
-        }
+    public void addList(List<AddAttrValueRequest> requestList) {
+        attrValueDao.addList(requestList);
     }
 
     @Override

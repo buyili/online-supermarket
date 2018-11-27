@@ -48,8 +48,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderResponse queryById(String id) {
-        orderDao.queryById(id);
-        return null;
+        return orderDao.queryDetailById(id);
     }
 
     @Override

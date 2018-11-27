@@ -15,6 +15,8 @@ public interface OrderDao {
 
     Order queryById(String id);
 
+    OrderResponse queryDetailById(String id);
+
     List<OrderResponse> queryForPage(QueryOrderForPage forPage);
 
     List<Order> queryByForeignKey(Order order);

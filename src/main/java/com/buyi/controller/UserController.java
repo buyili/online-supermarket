@@ -1,5 +1,7 @@
 package com.buyi.controller;
 
+import com.buyi.commons.builder.ResponseModel;
+import com.buyi.commons.util.FormatUtil;
 import com.buyi.dto.request.User.LoginRequest;
 import com.buyi.dto.request.User.RegisterRequest;
 import com.buyi.dto.response.user.UserResponse;
@@ -22,8 +24,9 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/login")
-    public String login(@RequestBody LoginRequest request) {
-        return userService.login(request);
+    public ResponseModel login(@RequestBody LoginRequest request) {
+        FormatUtil.validateTelephone(request.getTelephone());
+        return new ResponseModel.Success().data(userService.login(request)).build();
     }
 
     @PostMapping("/register")

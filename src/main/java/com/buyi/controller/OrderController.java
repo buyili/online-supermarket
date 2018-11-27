@@ -1,5 +1,6 @@
 package com.buyi.controller;
 
+import com.buyi.commons.builder.ResponseModel;
 import com.buyi.commons.util.Assert;
 import com.buyi.constant.ResponseStatusEnum;
 import com.buyi.dto.request.order.QueryOrderForPage;
@@ -24,18 +25,20 @@ public class OrderController {
     private OrderService orderService;
 
     @GetMapping("/orderDetail")
-    public OrderResponse queryOrderDetailById(@RequestParam String id) {
-        Assert.notNull(id,ResponseStatusEnum.PARAMETER_ERR);
-        return orderService.queryById(id);
+    public ResponseModel queryOrderDetailById(@RequestParam String id) {
+        Assert.notNull(id, ResponseStatusEnum.PARAMETER_ERR);
+        OrderResponse orderResponse = orderService.queryById(id);
+        return new ResponseModel.Success().data(orderResponse).build();
     }
 
     @GetMapping("/orders")
-    public List<OrderResponse> queryForPage(@RequestBody QueryOrderForPage forPage,
-                                            @RequestAttribute int userId) {
+    public ResponseModel queryForPage(@RequestBody QueryOrderForPage forPage,
+                                      @RequestAttribute int userId) {
         if (forPage.getUserId() != userId) {
             throw new GlobalException(ResponseStatusEnum.PARAMETER_ERR);
         }
-        return orderService.queryForPage(forPage);
+        List<OrderResponse> orderResponses = orderService.queryForPage(forPage);
+        return new ResponseModel.Success().data(orderResponses).build();
     }
 
 

@@ -8,11 +8,20 @@ import java.util.Date;
  */
 public class AddressResponse implements Serializable {
 
+    private Integer id;
     private String address;
     private String name;
     private String telephone;
     private String postcode;
     private Date createTime;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getAddress() {
         return address;

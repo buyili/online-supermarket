@@ -14,13 +14,13 @@
         SELECT * FROM `goods`
         <where>
             <if test="storeId != null">
-                `store_id` = #{storeId},
+                AND `store_id` = #{storeId}
             </if>
             <if test="categoryId != null">
-                `category_id` = #{categoryId},
+                AND `category_id` = #{categoryId}
             </if>
             <if test="trademarkId != null">
-                `trademark_id` = #{trademarkId},
+                AND `trademark_id` = #{trademarkId}
             </if>
         </where>
     </select>

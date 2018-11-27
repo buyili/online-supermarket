@@ -8,11 +8,13 @@
     </insert>
 
     <select id="queryById" resultType="com.buyi.entity.Address">
-        SELECT * FROM `address` WHERE `id` = #{id} AND `delete_status` = #{deleteStatus}
+        <bind name="_NORMAL" value="@com.buyi.constant.DeleteStatusEnum@NORMAL.status"/>
+        SELECT * FROM `address` WHERE `id` = #{id} AND `delete_status` = #{_NORMAL}
     </select>
 
     <select id="queryByUserId" resultType="com.buyi.entity.Address">
-        SELECT * FROM `address` WHERE `user_id` = #{userId} AND `delete_status` = #{deleteStatus}
+        <bind name="_NORMAL" value="@com.buyi.constant.DeleteStatusEnum@NORMAL.status"/>
+        SELECT * FROM `address` WHERE `user_id` = #{userId} AND `delete_status` = #{_NORMAL}
     </select>
 
     <update id="update" parameterType="com.buyi.entity.Address">

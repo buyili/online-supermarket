@@ -1,5 +1,6 @@
 package com.buyi.controller;
 
+import com.buyi.commons.builder.ResponseModel;
 import com.buyi.commons.util.Assert;
 import com.buyi.constant.ResponseStatusEnum;
 import com.buyi.dto.request.category.AddCategoryRequest;
@@ -25,21 +26,24 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @GetMapping("/{parentId}/categories")
-    public List<CategoryResponse> get(@PathVariable Integer parentId) {
+    public ResponseModel get(@PathVariable int parentId) {
         Assert.notNull(parentId, ResponseStatusEnum.PARAMETER_ERR);
-        return categoryService.queryByParentId(parentId);
+        List<CategoryResponse> responses = categoryService.queryByParentId(parentId);
+        return new ResponseModel.Success().data(responses).build();
     }
 
-    @PostMapping("/category/add")
-    public void add(@RequestBody @Validated AddCategoryRequest request,
-                    BindingResult result) {
+    @PostMapping("/admin/category/add")
+    public ResponseModel add(@RequestBody @Validated AddCategoryRequest request,
+                             BindingResult result) {
         Assert.notError(result);
         categoryService.add(request);
+        return new ResponseModel.Success().build();
     }
 
-    @DeleteMapping("/categories/{id}")
-    public void delete(@PathVariable Integer id) {
+    @DeleteMapping("/admin/categories/{id}")
+    public ResponseModel delete(@PathVariable int id) {
         Assert.notNull(id, ResponseStatusEnum.PARAMETER_ERR);
         categoryService.delete(id);
+        return new ResponseModel.Success().build();
     }
 }

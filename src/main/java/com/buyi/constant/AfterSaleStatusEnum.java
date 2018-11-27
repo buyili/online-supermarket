@@ -5,7 +5,7 @@ package com.buyi.constant;
  */
 public enum AfterSaleStatusEnum {
     APPLY_AFTER_SALE(100),//买家申请售后
-    AGREE_AFTER_SALE(200),//同意售后
+    AGREE_AFTER_SALE(200),//卖家同意售后
     SALES_RETURN(201),//买家退货
     REFUND(203),//等待卖家退款
     SUCCESS(203),//售后成功

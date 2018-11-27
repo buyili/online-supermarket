@@ -1,14 +1,19 @@
 package com.buyi.service.impl;
 
+import com.buyi.commons.util.Assert;
 import com.buyi.constant.AfterSaleMethodEnum;
 import com.buyi.constant.AfterSaleStatusEnum;
 import com.buyi.constant.ResponseStatusEnum;
 import com.buyi.dao.AfterSaleDao;
+import com.buyi.dao.OrderDao;
+import com.buyi.dao.OrderSKUDao;
 import com.buyi.dto.request.aftersale.AddAfterSaleRequest;
 import com.buyi.dto.request.aftersale.AddExpressNumRequest;
 import com.buyi.dto.request.aftersale.AfterSaleResultRequest;
 import com.buyi.dto.request.aftersale.RefundRequest;
 import com.buyi.entity.AfterSale;
+import com.buyi.entity.Order;
+import com.buyi.entity.OrderSKU;
 import com.buyi.exception.GlobalException;
 import com.buyi.service.AfterSaleService;
 import org.springframework.beans.BeanUtils;
@@ -27,12 +32,24 @@ public class AfterSaleServiceImpl implements AfterSaleService {
     @Resource
     private AfterSaleDao afterSaleDao;
 
+    @Resource
+    private OrderSKUDao orderSKUDao;
+
+    @Resource
+    private OrderDao orderDao;
+
     @Override
     public void add(AddAfterSaleRequest request) {
+        OrderSKU dbOrderSKU = orderSKUDao.queryById(request.getOrderSKUId());
+        Assert.notNull(dbOrderSKU,ResponseStatusEnum.PARAMETER_ERR);
+        Order dbOrder = orderDao.queryById(dbOrderSKU.getOrderId());
+        Assert.notNull(dbOrder,ResponseStatusEnum.PARAMETER_ERR);
         AfterSale afterSale = new AfterSale();
         BeanUtils.copyProperties(request, afterSale);
         Date date = new Date();
         afterSale.setCreateTime(date);
+        afterSale.setStoreId(dbOrder.getStoreId());
+        afterSale.setStatus(AfterSaleStatusEnum.APPLY_AFTER_SALE.getStatus());
         afterSaleDao.add(afterSale);
     }
 
@@ -55,7 +72,7 @@ public class AfterSaleServiceImpl implements AfterSaleService {
     public void AfterSaleResult(AfterSaleResultRequest request) {
         AfterSale query = afterSaleDao.queryById(request.getId());
         if (query == null || !query.getStoreId().equals(request.getStoreId())) {
-            throw new GlobalException(ResponseStatusEnum.PARAMETER_ERR);
+            throw new GlobalException("用户校验失败",ResponseStatusEnum.NOT_LOGIN);
         }
         AfterSale afterSale = new AfterSale();
         BeanUtils.copyProperties(request, afterSale);

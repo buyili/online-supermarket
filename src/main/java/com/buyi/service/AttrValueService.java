@@ -1,6 +1,8 @@
 package com.buyi.service;
 
+import com.buyi.dto.request.attr.value.AddAttrValueRequest;
 import com.buyi.dto.request.attr.value.ModifyAttrValueRequest;
+import com.buyi.dto.request.attr.value.QueryValuesRequest;
 import com.buyi.entity.AttrValue;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 
@@ -11,9 +13,9 @@ import java.util.List;
  */
 public interface AttrValueService {
 
-    List<AttrValue> queryForAttr(int attrId);
+    List<AttrValue> queryForAttr(QueryValuesRequest request);
 
-    void add(List<AttrValue> attrValues);
+    void addList(List<AddAttrValueRequest> requestList);
 
     void modify(ModifyAttrValueRequest request);
 }

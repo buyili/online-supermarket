@@ -1,10 +1,14 @@
 package com.buyi.controller;
 
+import com.buyi.commons.builder.ResponseModel;
+import com.buyi.commons.util.Assert;
 import com.buyi.dto.request.attr.ModifyAttrRequest;
 import com.buyi.entity.Attr;
 import com.buyi.service.AttrService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,23 +24,29 @@ public class AttrController {
     private AttrService attrService;
 
     @GetMapping("/attrs/{id}")
-    public Attr query(@PathVariable Integer id) {
-        return attrService.queryById(id);
+    public ResponseModel query(@PathVariable Integer id) {
+        Attr attr = attrService.queryById(id);
+        return new ResponseModel.Success().data(attr).build();
     }
 
     @GetMapping("/{categoryId}/attrs")
-    public List<Attr> queryForCategory(@PathVariable Integer categoryId) {
-        return attrService.queryByCategoryId(categoryId);
+    public ResponseModel queryForCategory(@PathVariable Integer categoryId) {
+        List<Attr> attrs = attrService.queryByCategoryId(categoryId);
+        return new ResponseModel.Success().data(attrs).build();
     }
 
     @PostMapping("/attrs/add")
-    public void add(@RequestBody List<Attr> attrs) {
+    public ResponseModel add(@RequestBody List<Attr> attrs) {
         attrService.add(attrs);
+        return new ResponseModel.Success().build();
     }
 
     @PostMapping("/attrs/modify")
-    public void modify(ModifyAttrRequest request) {
+    public ResponseModel modify(@RequestBody @Validated ModifyAttrRequest request,
+                                BindingResult result) {
+        Assert.notError(result);
         attrService.modify(request);
+        return new ResponseModel.Success().build();
     }
 
 }

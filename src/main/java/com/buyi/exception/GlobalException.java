@@ -9,6 +9,14 @@ public class GlobalException extends RuntimeException {
 
     private int code;
 
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
     public GlobalException(ResponseStatusEnum responseStatusEnum) {
         super(responseStatusEnum.getMsg());
         this.code = responseStatusEnum.getStatus();

@@ -2,6 +2,7 @@ package com.buyi.service;
 
 import com.buyi.dto.request.User.LoginRequest;
 import com.buyi.dto.request.User.RegisterRequest;
+import com.buyi.dto.response.user.LoginResponse;
 import com.buyi.dto.response.user.UserResponse;
 
 /**
@@ -11,7 +12,9 @@ public interface UserService {
 
     void register(RegisterRequest request);
 
-    String login(LoginRequest request);
+    LoginResponse login(LoginRequest request);
+
+    LoginResponse loginAdmin(LoginRequest request);
 
     UserResponse getUser(Integer id);
 }

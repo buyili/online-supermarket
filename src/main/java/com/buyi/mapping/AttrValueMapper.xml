@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.buyi.dao.AttrValueDao">
-    <insert id="add" parameterType="com.buyi.entity.AttrValue">
+    <insert id="addList">
         INSERT INTO `attr_value` (`attr_id`, `name`, `goods_id`)
-        VALUES (#{attrId}, #{name}, #{goodsId})
+        VALUES
+        <foreach collection="list" separator="," item="item">
+            (#{item.attrId}, #{item.name}, #{item.goodsId})
+        </foreach>
     </insert>
 
     <select id="queryById" parameterType="java.lang.Integer" resultType="com.buyi.entity.AttrValue">
         SELECT * FROM `attr_value` WHERE `id` = #{id}
     </select>
 
-    <select id="queryByAttrId" parameterType="java.lang.Integer" resultType="com.buyi.entity.AttrValue">
-        SELECT * FROM `attr_value` WHERE `attr_id` = #{attrId}
+    <select id="queryByForeignKey" resultType="com.buyi.entity.AttrValue">
+        SELECT * FROM `attr_value` WHERE `attr_id` = #{attrId} AND `goods_id` = #{goodsId}
     </select>
 
     <update id="update" parameterType="com.buyi.entity.AttrValue">

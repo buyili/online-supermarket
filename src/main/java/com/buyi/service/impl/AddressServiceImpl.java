@@ -1,6 +1,8 @@
 package com.buyi.service.impl;
 
+import com.buyi.commons.util.Assert;
 import com.buyi.constant.DeleteStatusEnum;
+import com.buyi.constant.ResponseStatusEnum;
 import com.buyi.dao.AddressDao;
 import com.buyi.dto.request.address.AddAddressRequest;
 import com.buyi.dto.request.address.UpdateAddressRequest;
@@ -54,6 +56,7 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public AddressResponse queryById(Integer id) {
         Address dbAddress = addressDao.queryById(id);
+        Assert.notNull(dbAddress,ResponseStatusEnum.PARAMETER_ERR);
         AddressResponse response = new AddressResponse();
         BeanUtils.copyProperties(dbAddress, response);
         return response;

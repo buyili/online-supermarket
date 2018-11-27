@@ -8,8 +8,38 @@
         (#{id}, #{userId}, #{storeId}, #{name}, #{sum}, #{address}, #{expressNum}, #{createTime})
     </insert>
 
-    <select id="queryById" parameterType="java.lang.Integer" resultType="com.buyi.entity.Order">
+    <select id="queryById" parameterType="java.lang.String" resultType="com.buyi.entity.Order">
         SELECT * FROM `order` WHERE `id` = #{id}
+    </select>
+
+    <select id="queryDetailById" parameterType="java.lang.String" resultMap="orderResponse">
+        SELECT
+        o.*,
+        os.id AS order_sku_id,
+        os.goods_name AS order_sku_goods_name,
+        os.sku_count AS order_sku_sku_count,
+        os.sku_price AS order_sku_sku_price,
+        os.sku_detail AS order_sku_sku_detail
+        FROM
+        (
+        SELECT
+        o.*,
+        `id` AS store_id,
+        `name` AS store_name
+        FROM
+        (
+        SELECT
+        id AS order_id,
+        `name` AS order_name,
+        `sum` AS order_sum,
+        address order_address,
+        store_id AS order_store_id
+        FROM `order`
+        WHERE `id` = #{id}
+        ) AS o
+        LEFT JOIN `store` AS s ON o.order_store_id = s.id
+        ) AS o
+        LEFT JOIN `order_sku` AS os ON o.order_id = os.order_id
     </select>
 
     <resultMap id="orderResponse" type="com.buyi.dto.response.order.OrderResponse">

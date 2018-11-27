@@ -82,4 +82,10 @@ public class OrderDaoTest {
         List<OrderResponse> orderResponses = orderDao.queryForPage(forPage);
         System.out.println(orderResponses.size());
     }
+
+    @Test
+    public void queryDetailById() {
+        OrderResponse orderResponse = orderDao.queryDetailById("1");
+        System.out.println(orderResponse);
+    }
 }

@@ -1,6 +1,8 @@
 package com.buyi.dao;
 
+import com.buyi.dto.request.attr.value.AddAttrValueRequest;
 import com.buyi.entity.AttrValue;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -9,11 +11,11 @@ import java.util.List;
  */
 public interface AttrValueDao {
 
-    void add(AttrValue attrValue);
+    void addList(List<AddAttrValueRequest> requestList);
 
     AttrValue queryById(int id);
 
-    List<AttrValue> queryByAttrId(int attrId);
+    List<AttrValue> queryByForeignKey(@Param("attrId") int attrId, @Param("goodsId") int goodsId);
 
     void update(AttrValue attrValue);
 }

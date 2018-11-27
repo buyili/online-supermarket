@@ -10,6 +10,7 @@ public class AddExpressNumRequest {
     @NotNull
     private Integer id;
 
+    //发起当前请求的用户的id
     private Integer userId;
 
     private String expressDetail;
