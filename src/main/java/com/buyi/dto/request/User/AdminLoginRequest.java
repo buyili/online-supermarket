@@ -1,17 +1,14 @@
 package com.buyi.dto.request.User;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 
 /**
- * Created by 1132989278@qq.com on 2018/11/19 10:59
+ * Created by 1132989278@qq.com on 2018/11/28 17:02
  */
-public class LoginRequest implements Serializable {
+public class AdminLoginRequest implements Serializable {
     @NotNull
-    @Pattern(regexp = "\\d{11}")
     private String telephone;
-
     @NotNull
     private String password;
 

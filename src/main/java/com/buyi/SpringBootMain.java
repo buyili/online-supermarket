@@ -20,7 +20,7 @@ import javax.annotation.Resource;
  * Created by 1132989278@qq.com on 2018/11/2 16:03
  */
 @RestController
-@EnableAutoConfiguration
+@EnableAutoConfiguration()
 @ComponentScan("com.buyi.*")
 @MapperScan("com.buyi.*")
 @EnableConfigurationProperties({DataSourceProperties.class,ResourceUrlProperties.class})
@@ -38,6 +38,7 @@ public class SpringBootMain implements CommandLineRunner {
     }
 
     public static void main(String[] args) {
+        System.out.println(args.length);
         SpringApplication.run(SpringBootMain.class);
     }
 

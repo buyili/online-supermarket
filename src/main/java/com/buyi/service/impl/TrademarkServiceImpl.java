@@ -72,9 +72,6 @@ public class TrademarkServiceImpl implements TrademarkService {
 
     @Override
     public void delete(int id) {
-        Trademark trademark = new Trademark();
-        trademark.setId(id);
-        trademark.setDeleteStatus(DeleteStatusEnum.DELETE.getStatus());
-        trademarkDao.update(trademark);
+        trademarkDao.delete(id);
     }
 }

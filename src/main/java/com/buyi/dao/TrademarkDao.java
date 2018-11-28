@@ -17,4 +17,6 @@ public interface TrademarkDao {
 
     void update(Trademark trademark);
 
+    void delete(int id);
+
 }

@@ -88,4 +88,14 @@ public class OrderDaoTest {
         OrderResponse orderResponse = orderDao.queryDetailById("1");
         System.out.println(orderResponse);
     }
+
+    @Test
+    public void queryForPage() {
+        QueryOrderForPage forPage = new QueryOrderForPage();
+        forPage.setStoreId(1);
+        //forPage.setLimit(20);
+        forPage.setOffset(1);
+        List<OrderResponse> list = orderDao.queryForPage(forPage);
+        System.out.println(list.size());
+    }
 }

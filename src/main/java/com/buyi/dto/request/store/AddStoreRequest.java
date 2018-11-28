@@ -8,7 +8,6 @@ import java.io.Serializable;
  */
 public class AddStoreRequest implements Serializable {
 
-    @NotNull
     private Integer userId;
 
     @NotNull

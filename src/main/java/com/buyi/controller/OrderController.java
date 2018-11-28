@@ -10,6 +10,8 @@ import com.buyi.exception.GlobalException;
 import com.buyi.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,14 +34,26 @@ public class OrderController {
     }
 
     @GetMapping("/orders")
-    public ResponseModel queryForPage(@RequestBody QueryOrderForPage forPage,
+    public ResponseModel queryForPage(@RequestParam("limit") int limit, @RequestParam("offset") int offset,
                                       @RequestAttribute int userId) {
-        if (forPage.getUserId() != userId) {
-            throw new GlobalException(ResponseStatusEnum.PARAMETER_ERR);
-        }
-        List<OrderResponse> orderResponses = orderService.queryForPage(forPage);
+        QueryOrderForPage forPage = new QueryOrderForPage();
+        forPage.setLimit(limit);
+        forPage.setOffset(offset);
+        forPage.setUserId(userId);
+        List<OrderResponse> orderResponses = orderService.queryForPageToUser(forPage);
         return new ResponseModel.Success().data(orderResponses).build();
     }
 
+
+    @GetMapping("/seller/orders")
+    public ResponseModel queryForPageToStore(@RequestParam("limit") int limit, @RequestParam("offset") int offset,
+                                             @RequestAttribute int storeId) {
+        QueryOrderForPage forPage = new QueryOrderForPage();
+        forPage.setLimit(limit);
+        forPage.setOffset(offset);
+        forPage.setStoreId(storeId);
+        List<OrderResponse> orderResponses = orderService.queryForPageToStore(forPage);
+        return new ResponseModel.Success().data(orderResponses).build();
+    }
 
 }

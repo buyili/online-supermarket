@@ -12,6 +12,7 @@ public enum ResponseStatusEnum {
     NOT_REGISTER(402,"未注册"),
     NOT_STORE(403,"未开通商店"),
     NOT_LOGIN(404,"未登录"),
+    REGISTERED(405,"已注册"),
 
     SERVER_ERR(500,"服务端错误")
     ;

@@ -5,13 +5,14 @@ import com.buyi.exception.GlobalException;
 import com.google.gson.Gson;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by 1132989278@qq.com on 2018/11/16 17:11
  */
 public class SKUAttrSerializableUtil {
-    @Resource
-    private static Gson gson;
+    private static Gson gson = new Gson();
 
     public static SKUAttrValue[] deserialize(String skuAttr) {
         SKUAttrValue[] skuAttrValues = null;
@@ -24,7 +25,7 @@ public class SKUAttrSerializableUtil {
         return skuAttrValues;
     }
 
-    public class SKUAttrValue {
+    public static class SKUAttrValue {
         private Integer attrId;
         private String attrName;
         private Integer valueId;
@@ -61,5 +62,19 @@ public class SKUAttrSerializableUtil {
         public void setValueName(String valueName) {
             this.valueName = valueName;
         }
+    }
+
+    public static void test(){
+        SKUAttrValue skuAttrValue = new SKUAttrValue();
+        skuAttrValue.setAttrId(1);
+        skuAttrValue.setAttrName("buyi");
+        skuAttrValue.setValueId(2);
+        skuAttrValue.setValueName("name");
+        List<SKUAttrValue> list = new ArrayList<>();
+        list.add(skuAttrValue);
+        String s = gson.toJson(list);
+        System.out.println(s);
+        SKUAttrValue[] deserialize = deserialize(s);
+        System.out.println();
     }
 }

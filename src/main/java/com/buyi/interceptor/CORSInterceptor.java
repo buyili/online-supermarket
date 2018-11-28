@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 public class CORSInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        response.setHeader("Access-Control-Allow-Origin","http://localhost:8082");
-        response.setHeader("Access-Control-Allow-Methods","*");
-        response.setHeader("Access-Control-Allow-Headers","*");
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:8082");
+        response.setHeader("Access-Control-Allow-Methods", "*");
+        response.setHeader("Access-Control-Allow-Headers", "*");
         return true;
     }
 }

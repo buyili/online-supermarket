@@ -1,5 +1,6 @@
 package com.buyi.controller;
 
+import com.buyi.commons.builder.ResponseModel;
 import com.buyi.commons.util.Assert;
 import com.buyi.constant.ResponseStatusEnum;
 import com.buyi.dto.request.trademark.AddTrademarkRequest;
@@ -25,20 +26,23 @@ public class TrademarkController {
     private TrademarkService trademarkService;
 
     @GetMapping("/trademarks")
-    public List<TrademarkResponse> queryAll(){
-        return trademarkService.queryAll();
+    public ResponseModel queryAll() {
+        List<TrademarkResponse> list = trademarkService.queryAll();
+        return new ResponseModel.Success().data(list).build();
     }
 
-    @PostMapping("/trademarks/add")
-    public void add(@RequestBody @Validated AddTrademarkRequest request,
-                    BindingResult result) throws IOException {
+    @PostMapping("/admin/trademarks/add")
+    public ResponseModel add(@RequestBody @Validated AddTrademarkRequest request,
+                             BindingResult result) throws IOException {
         Assert.notError(result);
         trademarkService.add(request);
+        return new ResponseModel.Success().build();
     }
 
-    @DeleteMapping("/trademarks/{id}/delete")
-    public void delete(@PathVariable Integer id) {
-        Assert.notNull(id,ResponseStatusEnum.PARAMETER_ERR);
+    @DeleteMapping("/admin/trademarks/{id}/delete")
+    public ResponseModel delete(@PathVariable int id) {
+        Assert.notNull(id, ResponseStatusEnum.PARAMETER_ERR);
         trademarkService.delete(id);
+        return new ResponseModel.Success().build();
     }
 }

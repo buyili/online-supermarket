@@ -5,6 +5,7 @@ import com.buyi.commons.util.FormatUtil;
 import com.buyi.commons.util.JwtUtil;
 import com.buyi.constant.ResponseStatusEnum;
 import com.buyi.dao.UserDao;
+import com.buyi.dto.request.User.AdminLoginRequest;
 import com.buyi.dto.request.User.LoginRequest;
 import com.buyi.dto.request.User.RegisterRequest;
 import com.buyi.dto.response.user.LoginResponse;
@@ -31,7 +32,7 @@ public class UserServiceImpl implements UserService {
         String telephone = request.getTelephone();
         FormatUtil.validateTelephone(telephone);
         User dbUser = userDao.queryByTelephone(telephone);
-        Assert.isNull(dbUser, ResponseStatusEnum.PARAMETER_ERR);
+        Assert.isNull(dbUser, ResponseStatusEnum.REGISTERED);
         User addUser = new User();
         BeanUtils.copyProperties(request, addUser);
         userDao.add(addUser);
@@ -52,11 +53,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public LoginResponse loginAdmin(LoginRequest request) {
+    public LoginResponse loginAdmin(AdminLoginRequest request) {
         if (!request.getTelephone().equals("admin")) {
             throw new GlobalException(ResponseStatusEnum.PARAMETER_ERR);
         }
-        return login(request);
+        LoginRequest aRequest = new LoginRequest();
+        BeanUtils.copyProperties(request,aRequest);
+        return login(aRequest);
     }
 
     @Override

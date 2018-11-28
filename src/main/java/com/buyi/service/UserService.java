@@ -1,5 +1,6 @@
 package com.buyi.service;
 
+import com.buyi.dto.request.User.AdminLoginRequest;
 import com.buyi.dto.request.User.LoginRequest;
 import com.buyi.dto.request.User.RegisterRequest;
 import com.buyi.dto.response.user.LoginResponse;
@@ -14,7 +15,7 @@ public interface UserService {
 
     LoginResponse login(LoginRequest request);
 
-    LoginResponse loginAdmin(LoginRequest request);
+    LoginResponse loginAdmin(AdminLoginRequest request);
 
     UserResponse getUser(Integer id);
 }

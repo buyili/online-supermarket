@@ -11,7 +11,7 @@
  Target Server Version : 50720
  File Encoding         : 65001
 
- Date: 16/11/2018 17:57:51
+ Date: 28/11/2018 18:05:29
 */
 
 SET NAMES utf8mb4;
@@ -27,12 +27,12 @@ CREATE TABLE `address`  (
   `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '街道地址',
   `name` varchar(18) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '收件人姓名',
   `telephone` varchar(11) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '收件人电话号码',
-  `postcode` varchar(6) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '邮政编码',
+  `postcode` varchar(6) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0' COMMENT '邮政编码',
   `create_time` datetime(0) NOT NULL COMMENT '创建时间',
   `delete_time` datetime(0) NULL DEFAULT NULL COMMENT '删除时间',
   `delete_status` int(11) UNSIGNED NOT NULL DEFAULT 1 COMMENT '数据删除状态 1-正常 2-删除',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of address
@@ -45,6 +45,9 @@ INSERT INTO `address` VALUES (5, 1, 'si chuan shen cheng du shi jin jiang qu shu
 INSERT INTO `address` VALUES (6, 1, 'si chuan shen cheng du shi jin jiang qu shui mu hua xia!', 'buii', '23223423', '444444', '2018-11-13 17:03:55', NULL, 1);
 INSERT INTO `address` VALUES (7, 1, 'n. 形状；模型；身材；具体化\nvt. 形成；塑造，使成形；使符合\nvi. 形成；成形；成长\nn. (Shape)人名；(瑞典)沙佩', 'shape', 'n. 磁铁', 'magnet', '2018-11-15 10:56:04', NULL, 1);
 INSERT INTO `address` VALUES (8, 1, 'n. 形状；模型；身材；具体化\nvt. 形成；塑造，使成形；使符合\nvi. 形成；成形；成长\nn. (Shape)人名；(瑞典)沙佩', 'shape', 'n. 磁铁', 'magnet', '2018-11-15 11:09:36', NULL, 1);
+INSERT INTO `address` VALUES (9, 1, 'faewfjoweijfeoi', 'buyi', '13158503013', '', '2018-11-27 12:22:07', NULL, 1);
+INSERT INTO `address` VALUES (10, 1, 'faewfjoweijfeoi', 'buyi', '13158503013', '', '2018-11-27 12:25:41', NULL, 1);
+INSERT INTO `address` VALUES (11, 1, 'faewfjoweijfeoi', 'buyi', '13158503013', '000000', '2018-11-27 12:26:58', NULL, 1);
 
 -- ----------------------------
 -- Table structure for after_sale
@@ -63,13 +66,16 @@ CREATE TABLE `after_sale`  (
   `create_time` datetime(0) NOT NULL COMMENT '创建时间',
   `delete_time` datetime(0) NULL DEFAULT NULL COMMENT '删除时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of after_sale
 -- ----------------------------
-INSERT INTO `after_sale` VALUES (1, 3, 1, 0, '退钱', NULL, 2, 1, NULL, '2018-11-13 17:34:46', NULL);
-INSERT INTO `after_sale` VALUES (2, 3, 1, 0, '退钱', NULL, 2, 2, NULL, '2018-11-13 17:34:46', NULL);
+INSERT INTO `after_sale` VALUES (1, 3, 1, 1, '退钱', '同意售后', 2, 203, '23452524262465635635656', '2018-11-13 17:34:46', NULL);
+INSERT INTO `after_sale` VALUES (2, 3, 1, 1, '退钱', NULL, 2, 2, NULL, '2018-11-13 17:34:46', NULL);
+INSERT INTO `after_sale` VALUES (3, 1, 1, 1, '未收到货', NULL, 1, 100, NULL, '2018-11-27 14:34:23', NULL);
+INSERT INTO `after_sale` VALUES (4, 1, 1, 1, '未收到货', NULL, 1, 100, NULL, '2018-11-27 15:34:03', NULL);
+INSERT INTO `after_sale` VALUES (5, 1, 1, 1, '未收到货', NULL, 1, 100, NULL, '2018-11-27 16:41:41', NULL);
 
 -- ----------------------------
 -- Table structure for attr
@@ -81,13 +87,19 @@ CREATE TABLE `attr`  (
   `category_id` int(11) UNSIGNED NOT NULL COMMENT '分类id',
   `is_sku` int(11) UNSIGNED NOT NULL DEFAULT 2 COMMENT '是否为sku属性 1-是，2-否',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of attr
 -- ----------------------------
 INSERT INTO `attr` VALUES (1, 'color', 2, 2);
 INSERT INTO `attr` VALUES (2, 'color', 2, 1);
+INSERT INTO `attr` VALUES (3, 'color', 2, 1);
+INSERT INTO `attr` VALUES (4, 'color', 2, 1);
+INSERT INTO `attr` VALUES (5, 'color', 2, 1);
+INSERT INTO `attr` VALUES (6, 'color', 2, 1);
+INSERT INTO `attr` VALUES (7, 'color', 2, 1);
+INSERT INTO `attr` VALUES (8, 'color', 2, 1);
 
 -- ----------------------------
 -- Table structure for attr_value
@@ -99,13 +111,19 @@ CREATE TABLE `attr_value`  (
   `name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '属性值名称',
   `goods_id` int(11) UNSIGNED NULL DEFAULT NULL COMMENT '商品id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of attr_value
 -- ----------------------------
 INSERT INTO `attr_value` VALUES (1, 2, 'yellow', 2);
 INSERT INTO `attr_value` VALUES (2, 2, 'black', 2);
+INSERT INTO `attr_value` VALUES (3, 0, 'name0', 0);
+INSERT INTO `attr_value` VALUES (4, 1, 'name1', 1);
+INSERT INTO `attr_value` VALUES (5, 0, 'name0', 0);
+INSERT INTO `attr_value` VALUES (6, 1, 'name1', 1);
+INSERT INTO `attr_value` VALUES (7, 1, 'n', 2);
+INSERT INTO `attr_value` VALUES (8, 1, 'n', 2);
 
 -- ----------------------------
 -- Table structure for category
@@ -118,14 +136,17 @@ CREATE TABLE `category`  (
   `delete_status` int(11) UNSIGNED NOT NULL DEFAULT 1 COMMENT '类别状态 1-正常，2-废除',
   `level` int(11) UNSIGNED NOT NULL DEFAULT 1 COMMENT '商品类别id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of category
 -- ----------------------------
-INSERT INTO `category` VALUES (1, 'buyi', 2, 1, 1);
+INSERT INTO `category` VALUES (1, 'buyi', 2, 2, 1);
 INSERT INTO `category` VALUES (2, 'buyi', 2, 2, 1);
 INSERT INTO `category` VALUES (3, 'buyi', 2, 1, 1);
+INSERT INTO `category` VALUES (4, 'computer', 0, 1, 1);
+INSERT INTO `category` VALUES (5, 'computer', 0, 1, 1);
+INSERT INTO `category` VALUES (6, 'faoefj', 1, 1, 1);
 
 -- ----------------------------
 -- Table structure for goods
@@ -138,13 +159,15 @@ CREATE TABLE `goods`  (
   `store_id` int(11) UNSIGNED NOT NULL COMMENT '店铺id',
   `trademark_id` int(11) UNSIGNED NULL DEFAULT NULL COMMENT '品牌id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of goods
 -- ----------------------------
 INSERT INTO `goods` VALUES (1, 2, 'vivo nex', 1, 1);
-INSERT INTO `goods` VALUES (2, 2, 'vivo nex', 1, 1);
+INSERT INTO `goods` VALUES (2, 1, 'vivo nex', 1, 1);
+INSERT INTO `goods` VALUES (3, 1, 'computer', 1, 1);
+INSERT INTO `goods` VALUES (4, 1, 'computer', 1, NULL);
 
 -- ----------------------------
 -- Table structure for order
@@ -167,11 +190,7 @@ CREATE TABLE `order`  (
 -- ----------------------------
 -- Records of order
 -- ----------------------------
-INSERT INTO `order` VALUES ('', 1, 1, 'oppo find x', 3000.00, 1, '四川省成都市锦江区天府三街腾讯大厦B座 19983145689 666666 布衣', NULL, NULL, '2018-11-14 15:55:46', NULL);
-INSERT INTO `order` VALUES ('', 1, 1, 'oppo find x', 3000.00, 1, '四川省成都市锦江区天府三街腾讯大厦B座 19983145689 666666 布衣', NULL, NULL, '2018-11-14 15:55:46', NULL);
-INSERT INTO `order` VALUES ('', 1, 1, 'oppo find x', 3000.00, 1, '四川省成都市锦江区天府三街腾讯大厦B座 19983145689 666666 布衣', NULL, NULL, '2018-11-15 18:04:59', NULL);
-INSERT INTO `order` VALUES ('', 1, 1, 'oppo find x', 3000.00, 1, '四川省成都市锦江区天府三街腾讯大厦B座 19983145689 666666 布衣', NULL, NULL, '2018-11-15 18:05:54', NULL);
-INSERT INTO `order` VALUES ('', 1, 1, 'oppo find x', 3000.00, 1, '四川省成都市锦江区天府三街腾讯大厦B座 19983145689 666666 布衣', NULL, NULL, '2018-11-15 18:07:04', NULL);
+INSERT INTO `order` VALUES ('1', 1, 1, 'oppo find x', 3000.00, 1, '四川省成都市锦江区天府三街腾讯大厦B座 19983145689 666666 布衣', NULL, NULL, '2018-11-15 18:07:04', NULL);
 INSERT INTO `order` VALUES ('20181116140538129-0001', 1, 1, 'oppo find x', 3000.00, 1, '四川省成都市锦江区天府三街腾讯大厦B座 19983145689 666666 布衣', NULL, NULL, '2018-11-16 14:05:38', NULL);
 
 -- ----------------------------
@@ -215,10 +234,12 @@ CREATE TABLE `sku`  (
 -- ----------------------------
 -- Records of sku
 -- ----------------------------
-INSERT INTO `sku` VALUES ('1', 1, '2:3,4:4,5:5,6:4', 3000.00, 200, '');
-INSERT INTO `sku` VALUES ('2', 1, '2:3,4:4,5:5,6:4', 3000.00, 200, '');
-INSERT INTO `sku` VALUES ('20181116170717418-0001', 1, '2:3,4:4,5:5,6:4', 3000.00, 200, 'yellow ');
-INSERT INTO `sku` VALUES ('3', 1, '2:3,4:4,5:5,6:4', 3000.00, 200, 'yellow ');
+INSERT INTO `sku` VALUES ('20181128114619526468082498571', 1, '[{\'attrId\':1,\'attrName\':\'buyi\',\'valueId\':2,\'valueName\':\'hh\'}]', 300.00, 2, '黄色, 64G');
+INSERT INTO `sku` VALUES ('20181128114619526468087387250', 1, '[{\'attrId\':1,\'attrName\':\'buyi\',\'valueId\':2,\'valueName\':\'hh\'}]', 300.00, 2, '黄色, 64G');
+INSERT INTO `sku` VALUES ('20181128114735526544199659724', 1, '[{\'attrId\':1,\'attrName\':\'buyi\',\'valueId\':2,\'valueName\':\'hh\'}]', 300.00, 2, '黄色, 64G');
+INSERT INTO `sku` VALUES ('20181128114735526544211661036', 1, '[{\'attrId\':1,\'attrName\':\'buyi\',\'valueId\':2,\'valueName\':\'hh\'}]', 300.00, 30, '黄色, 64G');
+INSERT INTO `sku` VALUES ('20181128131108531557730319400', 1, '[{\'attrId\':1,\'attrName\':\'buyi\',\'valueId\':2,\'valueName\':\'hh\'}]', 300.00, 2, '黄色, 64G');
+INSERT INTO `sku` VALUES ('20181128131108531557736980683', 1, '[{\'attrId\':1,\'attrName\':\'buyi\',\'valueId\':2,\'valueName\':\'hh\'}]', 300.00, 2, '黄色, 64G');
 
 -- ----------------------------
 -- Table structure for sku_attr
@@ -230,13 +251,27 @@ CREATE TABLE `sku_attr`  (
   `attr_value_id` int(11) UNSIGNED NOT NULL COMMENT '属性值id',
   `sku_id` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'sku id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sku_attr
 -- ----------------------------
 INSERT INTO `sku_attr` VALUES (1, 1, 1, '1');
 INSERT INTO `sku_attr` VALUES (2, 1, 1, '1');
+INSERT INTO `sku_attr` VALUES (3, 2, 3, '20181121102127673-0001');
+INSERT INTO `sku_attr` VALUES (4, 2, 3, '20181121102127673-0001');
+INSERT INTO `sku_attr` VALUES (5, 2, 3, '20181121102127673-0001');
+INSERT INTO `sku_attr` VALUES (6, 2, 3, '20181121102322396-0001');
+INSERT INTO `sku_attr` VALUES (8, 2, 3, '20181121102322396-0001');
+INSERT INTO `sku_attr` VALUES (9, 2, 3, '20181121102504171-0001');
+INSERT INTO `sku_attr` VALUES (10, 2, 3, '20181121102504171-0001');
+INSERT INTO `sku_attr` VALUES (11, 2, 3, '20181121102504171-0001');
+INSERT INTO `sku_attr` VALUES (12, 1, 2, '20181128114619526468082498571');
+INSERT INTO `sku_attr` VALUES (13, 1, 2, '20181128114619526468087387250');
+INSERT INTO `sku_attr` VALUES (14, 1, 2, '20181128114735526544199659724');
+INSERT INTO `sku_attr` VALUES (15, 1, 2, '20181128114735526544211661036');
+INSERT INTO `sku_attr` VALUES (16, 1, 2, '20181128131108531557730319400');
+INSERT INTO `sku_attr` VALUES (17, 1, 2, '20181128131108531557736980683');
 
 -- ----------------------------
 -- Table structure for store
@@ -248,13 +283,14 @@ CREATE TABLE `store`  (
   `user_id` int(11) UNSIGNED NOT NULL COMMENT '用户id',
   `status` int(11) UNSIGNED NOT NULL COMMENT '店铺状态 1-正常 2-关闭',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of store
 -- ----------------------------
 INSERT INTO `store` VALUES (1, 'small store', 1, 1);
 INSERT INTO `store` VALUES (2, 'small store', 2, 1);
+INSERT INTO `store` VALUES (3, 'buyixiaodian-_-', 1, 1);
 
 -- ----------------------------
 -- Table structure for trademark
@@ -283,15 +319,17 @@ CREATE TABLE `user`  (
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户密码',
   `telephone` varchar(18) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户电话号码',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'buyiupdate', 'sergs', '14q23434');
-INSERT INTO `user` VALUES (2, 'buyi', 'sergs', '14q23434');
-INSERT INTO `user` VALUES (3, 'buyi', 'sergs', '14q23434');
+INSERT INTO `user` VALUES (1, 'admin', '123', 'admin');
+INSERT INTO `user` VALUES (2, 'buyi', '123', '19983181508');
+INSERT INTO `user` VALUES (3, 'buyi', '123', '13158503013');
 INSERT INTO `user` VALUES (4, 'buyi', 'sergs', '14q23434');
 INSERT INTO `user` VALUES (5, 'buyi', 'sergs', '14q23434');
+INSERT INTO `user` VALUES (6, 'buyi', '123', '19983181208');
+INSERT INTO `user` VALUES (7, 'buyi', '123', '19983181228');
 
 SET FOREIGN_KEY_CHECKS = 1;

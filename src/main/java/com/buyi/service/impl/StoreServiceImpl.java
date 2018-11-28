@@ -31,6 +31,8 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public void add(AddStoreRequest request) {
+        User dbUser = userDao.queryOneById(request.getUserId());
+        Assert.notNull(dbUser,ResponseStatusEnum.PARAMETER_ERR);
         Store store = new Store();
         BeanUtils.copyProperties(request, store);
         storeDao.add(store);

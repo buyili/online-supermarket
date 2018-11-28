@@ -9,6 +9,7 @@ import com.buyi.service.AttrValueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,7 +34,7 @@ public class AttrValueController {
     }
 
     @PostMapping("/addAttrValue")
-    public ResponseModel add(@RequestBody List<AddAttrValueRequest> list) {
+    public ResponseModel add(@RequestBody @Validated List<AddAttrValueRequest> list) {
         attrValueService.addList(list);
         return new ResponseModel.Success().build();
     }

@@ -15,7 +15,9 @@ public interface OrderService {
 
     OrderResponse queryById(String id);
 
-    List<OrderResponse> queryForPage(QueryOrderForPage forPage);
+    List<OrderResponse> queryForPageToUser(QueryOrderForPage forPage);
+
+    List<OrderResponse> queryForPageToStore(QueryOrderForPage forPage);
 
     void add(AddOrderRequest request);
 

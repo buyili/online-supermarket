@@ -1,6 +1,11 @@
 package com.buyi.dto.request.sku;
 
+import org.springframework.validation.annotation.Validated;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Created by 1132989278@qq.com on 2018/11/16 16:10
@@ -9,7 +14,7 @@ public class AddSKURequest {
     @NotNull
     private Integer goodsId;
 
-    @NotNull
+    @NotBlank
     private String skuAttr;
 
     @NotNull

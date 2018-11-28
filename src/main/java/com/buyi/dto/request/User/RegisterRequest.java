@@ -1,6 +1,7 @@
 package com.buyi.dto.request.User;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 
 /**
@@ -12,6 +13,7 @@ public class RegisterRequest implements Serializable {
     @NotNull
     private String password;
     @NotNull
+    @Pattern(regexp = "\\d{11}")
     private String telephone;
 
     public String getName() {

@@ -46,13 +46,28 @@ public class OrderServiceImpl implements OrderService {
     @Resource
     private AddressDao addressDao;
 
+    @Resource
+    private UserDao userDao;
+
+    @Resource
+    private StoreDao storeDao;
+
     @Override
     public OrderResponse queryById(String id) {
         return orderDao.queryDetailById(id);
     }
 
     @Override
-    public List<OrderResponse> queryForPage(QueryOrderForPage forPage) {
+    public List<OrderResponse> queryForPageToUser(QueryOrderForPage forPage) {
+        User dbUser = userDao.queryOneById(forPage.getUserId());
+        Assert.notNull(dbUser,ResponseStatusEnum.PARAMETER_ERR);
+        return orderDao.queryForPage(forPage);
+    }
+
+    @Override
+    public List<OrderResponse> queryForPageToStore(QueryOrderForPage forPage) {
+        Store dbStore = storeDao.queryById(forPage.getStoreId());
+        Assert.notNull(dbStore,ResponseStatusEnum.PARAMETER_ERR);
         return orderDao.queryForPage(forPage);
     }
 

@@ -27,6 +27,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(new CORSInterceptor())
                 .addPathPatterns("/**");
         registry.addInterceptor(new LoginInterceptor())
-                .addPathPatterns("/**");
+                .addPathPatterns("/**")
+                .excludePathPatterns("/*/login");
     }
 }

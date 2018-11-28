@@ -6,13 +6,11 @@
     </insert>
 
     <select id="queryById" parameterType="java.lang.Integer" resultType="com.buyi.entity.Trademark">
-        <bind name="_NORMAL" value="@com.buyi.constant.DeleteStatusEnum@NORMAL.status"/>
-        SELECT * FROM `trademark` WHERE `id` = #{id} AND `delete_status` = #{_NORMAL}
+        SELECT * FROM `trademark` WHERE `id` = #{id}
     </select>
 
     <select id="queryAll" resultType="com.buyi.entity.Trademark">
-        <bind name="_NORMAL" value="@com.buyi.constant.DeleteStatusEnum@NORMAL.status"/>
-        SELECT * FROM `trademark` AND `delete_status` = #{_NORMAL}
+        SELECT * FROM `trademark`
     </select>
 
     <update id="update" parameterType="com.buyi.entity.Trademark">
@@ -24,10 +22,11 @@
             <if test="logoUrl != null">
                 `logo_url` = #{logoUrl},
             </if>
-            <if test="deleteStatus != null">
-                `delete_status` = #{deleteStatus},
-            </if>
         </set>
         WHERE `id` = #{id}
     </update>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        DELETE FROM `trademark` WHERE `id` = #{id}
+    </delete>
 </mapper>

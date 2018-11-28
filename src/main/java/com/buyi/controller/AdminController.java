@@ -3,6 +3,7 @@ package com.buyi.controller;
 import com.buyi.commons.builder.ResponseModel;
 import com.buyi.commons.util.Assert;
 import com.buyi.commons.util.JwtUtil;
+import com.buyi.dto.request.User.AdminLoginRequest;
 import com.buyi.dto.request.User.LoginRequest;
 import com.buyi.service.UserService;
 import org.slf4j.Logger;
@@ -32,7 +33,7 @@ public class AdminController {
     private UserService userService;
 
     @PostMapping("/login")
-    public ResponseModel login(@Validated @RequestBody LoginRequest request,
+    public ResponseModel login(@Validated @RequestBody AdminLoginRequest request,
                         BindingResult result) {
         Assert.notError(result);
         return new ResponseModel.Success().data(userService.loginAdmin(request)).build();

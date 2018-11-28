@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.buyi.dao.OrderDao">
+
+    <resultMap id="orderResponse" type="com.buyi.dto.response.order.OrderResponse">
+        <id property="id" column="order_id"/>
+        <result property="name" column="order_name"/>
+        <result property="sum" column="order_sum"/>
+        <result property="address" column="order_address"/>
+        <result property="storeId" column="order_store_id"/>
+        <association property="store" javaType="com.buyi.entity.Store" columnPrefix="store_">
+            <id property="id" column="id"/>
+            <result property="name" column="name"/>
+        </association>
+        <collection property="orderSKUS" ofType="com.buyi.entity.OrderSKU" columnPrefix="order_sku_">
+            <id property="id" column="id"/>
+            <result property="goodsName" column="goods_name"/>
+            <result property="skuCount" column="sku_count"/>
+            <result property="skuPrice" column="sku_price"/>
+            <result property="skuDetail" column="sku_detail"/>
+        </collection>
+    </resultMap>
+
     <insert id="add" parameterType="com.buyi.entity.Order">
         INSERT INTO `order`
         (`id`, `user_id`, `store_id`, `name`, `sum`, `address`, `express_num`, `create_time`)
@@ -42,24 +62,7 @@
         LEFT JOIN `order_sku` AS os ON o.order_id = os.order_id
     </select>
 
-    <resultMap id="orderResponse" type="com.buyi.dto.response.order.OrderResponse">
-        <id property="id" column="order_id"/>
-        <result property="name" column="order_name"/>
-        <result property="sum" column="order_sum"/>
-        <result property="address" column="order_address"/>
-        <result property="storeId" column="order_store_id"/>
-        <association property="store" javaType="com.buyi.entity.Store" columnPrefix="store_">
-            <id property="id" column="id"/>
-            <result property="name" column="name"/>
-        </association>
-        <collection property="orderSKUS" ofType="com.buyi.entity.OrderSKU" columnPrefix="order_sku_">
-            <id property="id" column="id"/>
-            <result property="goodsName" column="goods_name"/>
-            <result property="skuCount" column="sku_count"/>
-            <result property="skuPrice" column="sku_price"/>
-            <result property="skuDetail" column="sku_detail"/>
-        </collection>
-    </resultMap>
+
 
     <select id="queryForPage" parameterType="com.buyi.dto.request.order.QueryOrderForPage" resultMap="orderResponse">
         SELECT
@@ -87,6 +90,9 @@
                         <where>
                             <if test="userId != null">
                                 AND `user_id` = #{userId}
+                            </if>
+                            <if test="storeId != null">
+                                AND `store_id` = #{storeId}
                             </if>
                         </where>
                         ORDER BY
