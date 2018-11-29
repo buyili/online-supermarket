@@ -11,7 +11,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.IOException;
 import java.util.List;
 
@@ -31,15 +34,26 @@ public class TrademarkController {
         return new ResponseModel.Success().data(list).build();
     }
 
+//    @PostMapping("/admin/trademarks/add")
+//    public ResponseModel add(@RequestBody @Validated AddTrademarkRequest request,
+//                             BindingResult result) throws IOException {
+//        Assert.notError(result);
+//        trademarkService.add(request);
+//        return new ResponseModel.Success().build();
+//    }
+
     @PostMapping("/admin/trademarks/add")
-    public ResponseModel add(@RequestBody @Validated AddTrademarkRequest request,
-                             BindingResult result) throws IOException {
-        Assert.notError(result);
+    public ResponseModel add(@RequestParam("name") String name,
+                             MultipartFile file) throws IOException {
+        Assert.notBlank(name,ResponseStatusEnum.PARAMETER_ERR);
+        AddTrademarkRequest request = new AddTrademarkRequest();
+        request.setName(name);
+        request.setLogo(file);
         trademarkService.add(request);
         return new ResponseModel.Success().build();
     }
 
-    @DeleteMapping("/admin/trademarks/{id}/delete")
+    @DeleteMapping("/admin/trademarks/{id}")
     public ResponseModel delete(@PathVariable int id) {
         Assert.notNull(id, ResponseStatusEnum.PARAMETER_ERR);
         trademarkService.delete(id);

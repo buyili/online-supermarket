@@ -48,6 +48,12 @@ public class Assert {
         }
     }
 
+    public static void notBlank(String str, ResponseStatusEnum respStatusEnum) {
+        if (str == null || str.equals("")) {
+            throw new GlobalException(respStatusEnum);
+        }
+    }
+
     public static void notError(BindingResult result) {
         if (result.hasErrors()) {
             List<ObjectError> allErrors = result.getAllErrors();

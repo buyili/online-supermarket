@@ -1,6 +1,8 @@
 package com.buyi.service.impl;
 
+import com.buyi.commons.util.Assert;
 import com.buyi.constant.DeleteStatusEnum;
+import com.buyi.constant.ResponseStatusEnum;
 import com.buyi.dao.TrademarkDao;
 import com.buyi.dto.request.trademark.AddTrademarkRequest;
 import com.buyi.dto.request.trademark.ModifyTrademarkRequest;
@@ -51,10 +53,14 @@ public class TrademarkServiceImpl implements TrademarkService {
     @Override
     @Transactional
     public void add(AddTrademarkRequest request) throws IOException {
-        String filename = "/logo-" + System.nanoTime();
-        String url = urlProperties.getLogoUrl() + filename;
-        File logoFile = new File(url);
+        Trademark dbTrademark = trademarkDao.queryByName(request.getName());
+        Assert.isNull(dbTrademark, ResponseStatusEnum.PARAMETER_ERR,"已添加该品牌");
         MultipartFile logo = request.getLogo();
+        String originalFilename = logo.getOriginalFilename();
+        String newName = "/logo-" + logo.getName() + System.nanoTime() + ".";
+        newName = originalFilename.replaceFirst(".*\\.", newName);
+        String url = urlProperties.getLogoUrl() + newName;
+        File logoFile = new File(url);
         logo.transferTo(logoFile);
 
         Trademark trademark = new Trademark();

@@ -13,10 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        if (request.getMethod().equals("OPTIONS")) {
+            return true;
+        }
         String token = request.getHeader("token");
         Claims claims = JwtUtil.parseJws(token);
-        request.setAttribute("userId",claims.get("userId"));
-        request.setAttribute("storeId",claims.get("storeId"));
-        return super.preHandle(request, response, handler);
+        request.setAttribute("userId", claims.get("userId"));
+        request.setAttribute("storeId", claims.get("storeId"));
+        return true;
     }
 }

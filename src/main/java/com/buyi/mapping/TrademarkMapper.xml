@@ -9,6 +9,10 @@
         SELECT * FROM `trademark` WHERE `id` = #{id}
     </select>
 
+    <select id="queryByName" parameterType="java.lang.String" resultType="com.buyi.entity.Trademark">
+        SELECT * FROM `trademark` WHERE `name` = #{name}
+    </select>
+
     <select id="queryAll" resultType="com.buyi.entity.Trademark">
         SELECT * FROM `trademark`
     </select>
@@ -27,6 +31,6 @@
     </update>
 
     <delete id="delete" parameterType="java.lang.Integer">
-        DELETE FROM `trademark` WHERE `id` = #{id}
+        DELETE * FROM `trademark` WHERE `id` = #{id}
     </delete>
 </mapper>

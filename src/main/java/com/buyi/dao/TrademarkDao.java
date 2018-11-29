@@ -13,6 +13,8 @@ public interface TrademarkDao {
 
     Trademark queryById(int id);
 
+    Trademark queryByName(String name);
+
     List<Trademark> queryAll();
 
     void update(Trademark trademark);

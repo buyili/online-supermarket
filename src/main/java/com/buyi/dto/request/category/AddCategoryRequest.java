@@ -1,5 +1,6 @@
 package com.buyi.dto.request.category;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
@@ -14,7 +15,7 @@ public class AddCategoryRequest implements Serializable {
     @NotNull
     private Integer level;
 
-    @NotNull
+    @NotBlank
     private String name;
 
     public Integer getParentId() {

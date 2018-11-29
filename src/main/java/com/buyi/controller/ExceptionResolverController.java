@@ -17,11 +17,11 @@ public class ExceptionResolverController {
 
     @ExceptionHandler
     public ResponseModel resolveException(Exception ex) {
+        ex.printStackTrace();
         GlobalException gEx;
         if (ex instanceof GlobalException) {
             gEx = (GlobalException) ex;
         } else {
-            ex.printStackTrace();
             gEx = new GlobalException(ResponseStatusEnum.SERVER_ERR);
         }
         return new ResponseModel.Builder()

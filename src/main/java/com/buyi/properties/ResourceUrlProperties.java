@@ -9,7 +9,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties("resources.url")
 public class ResourceUrlProperties {
 
-    @Value("logo-url")
     private String logoUrl;
 
     public String getLogoUrl() {

@@ -25,6 +25,12 @@ public class CategoryController {
     @Qualifier("categoryServiceImpl")
     private CategoryService categoryService;
 
+    @GetMapping("/categories")
+    public ResponseModel getAll() {
+        List<CategoryResponse> responses = categoryService.queryAll();
+        return new ResponseModel.Success().data(responses).build();
+    }
+
     @GetMapping("/{parentId}/categories")
     public ResponseModel get(@PathVariable int parentId) {
         Assert.notNull(parentId, ResponseStatusEnum.PARAMETER_ERR);
