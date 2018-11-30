@@ -41,9 +41,9 @@ public class AddressDaoTest {
 
     @Test
     public void queryById() {
-        Address address = addressDao.queryById(1,2);
-        System.out.println(address.getAddress());
-        System.out.println(gson.toJson(address));
+//        Address address = addressDao.queryById(1,2);
+//        System.out.println(address.getAddress());
+//        System.out.println(gson.toJson(address));
 
     }
 

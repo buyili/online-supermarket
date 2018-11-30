@@ -18,4 +18,6 @@ public interface AttrService {
 
     List<Attr> queryByCategoryId(int categoryId);
 
+    void delete(int id);
+
 }

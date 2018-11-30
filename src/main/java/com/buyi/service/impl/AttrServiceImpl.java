@@ -43,4 +43,9 @@ public class AttrServiceImpl implements AttrService {
         List<Attr> attrs = attrDao.queryByCategoryId(categoryId);
         return attrs;
     }
+
+    @Override
+    public void delete(int id) {
+        attrDao.delete(id);
+    }
 }

@@ -50,4 +50,9 @@ public class AttrDaoTest {
         attrDao.update(attr);
 
     }
+
+    @Test
+    public void delete() {
+        attrDao.delete(9);
+    }
 }

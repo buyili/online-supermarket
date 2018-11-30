@@ -1,167 +1,184 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.buyi</groupId>
-  <artifactId>online-supermarket</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <packaging>war</packaging>
+    <groupId>com.buyi</groupId>
+    <artifactId>online-supermarket</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
 
-  <name>online-supermarket Maven Webapp</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+    <name>online-supermarket Maven Webapp</name>
+    <!-- FIXME change it to the project's website -->
+    <url>http://www.example.com</url>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
-  </properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+    </properties>
 
-  <!-- Inherit defaults from Spring Boot -->
-  <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.1.0.RELEASE</version>
-  </parent>
+    <!-- Inherit defaults from Spring Boot -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.0.RELEASE</version>
+    </parent>
 
-  <dependencies>
-    <!-- AddSKURequest typical dependencies for a web application -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-mail</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-    </dependency>
-
-    <!--<dependency>-->
-    <!--<groupId>org.springframework.boot</groupId>-->
-    <!--<artifactId>spring-boot-devtools</artifactId>-->
-    <!--<optional>true</optional>-->
-    <!--</dependency>-->
-
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.12</version>
-      <scope>test</scope>
-    </dependency>
-
-
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-dbcp2</artifactId>
-      <version>2.5.0</version>
-    </dependency>
-
-
-    <dependency>
-      <groupId>org.mybatis</groupId>
-      <artifactId>mybatis-spring</artifactId>
-      <version>1.3.2</version>
-    </dependency>
-    <dependency>
-      <groupId>org.mybatis.spring.boot</groupId>
-      <artifactId>mybatis-spring-boot-starter</artifactId>
-      <version>1.3.2</version>
-    </dependency>
-    <dependency>
-      <groupId>org.mybatis</groupId>
-      <artifactId>mybatis</artifactId>
-      <version>3.4.6</version>
-    </dependency>
-
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>5.1.1</version>
-    </dependency>
-
-
-    <dependency>
-      <groupId>com.google.code.gson</groupId>
-      <artifactId>gson</artifactId>
-      <version>2.8.5</version>
-    </dependency>
-
-    <dependency>
-      <groupId>io.jsonwebtoken</groupId>
-      <artifactId>jjwt-api</artifactId>
-      <version>0.10.5</version>
-    </dependency>
-    <dependency>
-      <groupId>io.jsonwebtoken</groupId>
-      <artifactId>jjwt-impl</artifactId>
-      <version>0.10.5</version>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.jsonwebtoken</groupId>
-      <artifactId>jjwt-jackson</artifactId>
-      <version>0.10.5</version>
-      <scope>runtime</scope>
-    </dependency>
-    <!-- Uncomment this next dependency if you want to use RSASSA-PSS (PS256, PS384, PS512) algorithms:
-    <dependency>
-        <groupId>org.bouncycastle</groupId>
-        <artifactId>bcprov-jdk15on</artifactId>
-        <version>1.60</version>
-        <scope>runtime</scope>
-    </dependency>
-    -->
-
-
-
-  </dependencies>
-
-  <build>
-    <finalName>online-supermarket</finalName>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
-      <plugins>
-        <plugin>
-          <artifactId>maven-clean-plugin</artifactId>
-          <version>3.0.0</version>
-        </plugin>
-        <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
-        <plugin>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>3.0.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.7.0</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.20.1</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-war-plugin</artifactId>
-          <version>3.2.0</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-install-plugin</artifactId>
-          <version>2.5.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.8.2</version>
-        </plugin>
-
-
-          <plugin>
+    <dependencies>
+        <!-- AddSKURequest typical dependencies for a web application -->
+        <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
-          </plugin>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
-      </plugins>
-    </pluginManagement>
-  </build>
+        <!--<dependency>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-devtools</artifactId>-->
+        <!--<optional>true</optional>-->
+        <!--</dependency>-->
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-dbcp2</artifactId>
+            <version>2.5.0</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.4.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.1</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.10.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.10.5</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>0.10.5</version>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- Uncomment this next dependency if you want to use RSASSA-PSS (PS256, PS384, PS512) algorithms:
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15on</artifactId>
+            <version>1.60</version>
+            <scope>runtime</scope>
+        </dependency>
+        -->
+
+
+    </dependencies>
+
+    <build>
+        <finalName>online-supermarket</finalName>
+        <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+            <plugins>
+                <plugin>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>3.0.0</version>
+                </plugin>
+                <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.0.2</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.7.0</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.20.1</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.2.0</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>2.5.2</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.8.2</version>
+                </plugin>
+
+
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>spring-releases</id>
+            <url>https://repo.spring.io/libs-release</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-releases</id>
+            <url>https://repo.spring.io/libs-release</url>
+        </pluginRepository>
+    </pluginRepositories>
 </project>

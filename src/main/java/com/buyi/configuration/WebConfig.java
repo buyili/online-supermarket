@@ -14,18 +14,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-//        registry.addMapping("/**")
-//                .allowedOrigins("http://localhost:8082")
-//                .allowedMethods("PUT", "DELETE","POST","OPTIONS")
-//                .allowedHeaders("Access-Control-Allow-Origin", "header2", "header3")
-//                .exposedHeaders("Access-Control-Allow-Origin", "header2")
-//                .allowCredentials(true).maxAge(3600);
+        registry.addMapping("/**");
     }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new CORSInterceptor())
-                .addPathPatterns("/**");
+//        registry.addInterceptor(new CORSInterceptor())
+//                .addPathPatterns("/**");
 //        registry.addInterceptor(new LoginInterceptor())
 //                .addPathPatterns("/**")
 //                .excludePathPatterns("/*/login");

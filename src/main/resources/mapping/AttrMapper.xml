@@ -25,4 +25,8 @@
         </set>
         WHERE `id` = #{id}
     </update>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        DELETE FROM `attr` WHERE `id` = #{id}
+    </delete>
 </mapper>

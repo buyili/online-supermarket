@@ -31,6 +31,6 @@
     </update>
 
     <delete id="delete" parameterType="java.lang.Integer">
-        DELETE * FROM `trademark` WHERE `id` = #{id}
+        DELETE FROM `trademark` WHERE `id` = #{id}
     </delete>
 </mapper>

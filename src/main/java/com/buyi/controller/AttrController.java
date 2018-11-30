@@ -49,4 +49,11 @@ public class AttrController {
         return new ResponseModel.Success().build();
     }
 
+    @DeleteMapping("/admin/attrs/{id}")
+    public ResponseModel delete(@PathVariable int id) {
+        attrService.delete(id);
+        return new ResponseModel.Success().build();
+    }
+
+
 }

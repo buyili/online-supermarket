@@ -16,4 +16,6 @@ public interface AttrDao {
     List<Attr> queryByCategoryId(int categoryId);
 
     void update(Attr attr);
+
+    void delete(int id);
 }

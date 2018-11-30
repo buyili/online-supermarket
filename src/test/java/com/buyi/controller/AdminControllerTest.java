@@ -16,14 +16,13 @@ public class AdminControllerTest {
 
     @Test
     public void getOne() {
-
-        RestTemplate template = new RestTemplate();
-        MultiValueMap<String, String> form = new LinkedMultiValueMap<String, String>();
-        form.add("name", "buyi");
-        form.add("email", "jfawefj@com");
-        form.add("psw", "123");
-        URI uri = template.postForLocation("http://127.0.0.1:8080/admins/2", form);
-        System.out.println(uri);
+//        RestTemplate template = new RestTemplate();
+//        MultiValueMap<String, String> form = new LinkedMultiValueMap<String, String>();
+//        form.add("name", "buyi");
+//        form.add("email", "jfawefj@com");
+//        form.add("psw", "123");
+//        URI uri = template.postForLocation("http://127.0.0.1:8080/admins/2", form);
+//        System.out.println(uri);
     }
 
     @Test
